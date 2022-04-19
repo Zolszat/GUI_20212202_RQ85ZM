@@ -15,6 +15,15 @@ namespace Nikoban.Logic
         }
         public GameItem[,] Map { get; set; }
         private Queue<string> levels;
+        public GameLogic()
+        {
+            foreach(var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(),"Levels")))
+            {
+                levels.Enqueue(item);
+            }
+            LoadMap(levels.Dequeue());
+
+        }
         private void LoadMap(string path)
         {
             string[] lines = File.ReadAllLines(path);
@@ -23,7 +32,7 @@ namespace Nikoban.Logic
             {
                 for (int j = 0; j < Map.GetLength(1); j++)
                 {
-                    Map[i, j] = ConvertToGameItem(lines[i + 2][j])
+                    Map[i, j] = ConvertToGameItem(lines[i + 2][j]);
                 }
             }
         }
