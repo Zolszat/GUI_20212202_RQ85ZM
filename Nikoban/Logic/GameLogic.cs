@@ -8,6 +8,9 @@ namespace Nikoban.Logic
 {
     public class GameLogic : IGameModel, IGameControl
     {
-
+        public enum GameItem
+        {
+            player, wall, floor, box, target // lehetséges elemek a pályán
+        }
     }
 }
