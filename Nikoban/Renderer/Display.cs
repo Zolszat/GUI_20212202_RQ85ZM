@@ -10,6 +10,7 @@ namespace Nikoban.Renderer
 {
     public class Display : FrameworkElement
     {
+        private Size size;
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
