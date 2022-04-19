@@ -17,6 +17,7 @@ namespace Nikoban.Logic
         private Queue<string> levels;
         public GameLogic()
         {
+            levels = new Queue<string>();
             foreach(var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(),"Levels")))
             {
                 levels.Enqueue(item);
