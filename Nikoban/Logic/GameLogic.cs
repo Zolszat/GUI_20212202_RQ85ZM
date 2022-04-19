@@ -14,6 +14,18 @@ namespace Nikoban.Logic
             player, wall, floor, box, target // lehetséges elemek a pályán
         }
         public GameItem[,] Map { get; set; }
+        private void LoadMap(string path)
+        {
+            string[] lines = File.ReadAllLines(path);
+            Map = new GameItem[int.Parse(lines[0]), int.Parse(lines[1])];
+            for (int i = 0; i < Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < Map.GetLength(1); j++)
+                {
+                    Map[i, j] = ConvertToGameItem(lines[i + 2][j])
+                }
+            }
+        }
         private GameItem ConvertToGameItem(char c)
         {
             switch (c)
@@ -22,8 +34,6 @@ namespace Nikoban.Logic
                     return GameItem.wall;
                 case 'P':
                     return GameItem.player;
-                case ' ':
-                    return GameItem.floor;
                 case 'B':
                     return GameItem.box;
                 case 'T':
