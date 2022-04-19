@@ -12,5 +12,6 @@ namespace Nikoban.Logic
         {
             player, wall, floor, box, target // lehetséges elemek a pályán
         }
+        public GameItem[,] Map { get; set; }
     }
 }
