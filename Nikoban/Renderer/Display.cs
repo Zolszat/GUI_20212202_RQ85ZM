@@ -15,5 +15,10 @@ namespace Nikoban.Renderer
         {
             base.OnRender(drawingContext);
         }
+        public void Resize(Size size)
+        {
+            this.size = size;
+            this.InvalidateVisual();
+        }
     }
 }
