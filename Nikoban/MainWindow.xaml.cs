@@ -23,6 +23,8 @@ namespace Nikoban
         public MainWindow()
         {
             InitializeComponent();
+            LevelWindow lvl = new LevelWindow();
+            lvl.Show();
         }
     }
 }
