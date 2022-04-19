@@ -31,5 +31,10 @@ namespace Nikoban
         {
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+        }
     }
 }
