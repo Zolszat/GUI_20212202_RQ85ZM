@@ -20,6 +20,37 @@ namespace Nikoban.Renderer
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
+            if(model != null && size.Width>0 && size.Height>0)
+            {
+                double tileHeight = size.Height / model.Map.GetLength(0);
+                double tileWidth = size.Width / model.Map.GetLength(1);
+                for (int i = 0; i < model.Map.GetLength(0); i++)
+                {
+                    for (int j = 0; j < model.Map.GetLength(1); j++)
+                    {
+                        switch (model.Map[i,j])
+                        {
+                            case GameLogic.GameItem.player:
+                                drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                break;
+                            case GameLogic.GameItem.wall:
+                                drawingContext.DrawRectangle(Brushes.Gray, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                break;
+                            case GameLogic.GameItem.floor:
+                                drawingContext.DrawRectangle(Brushes.Black, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                break;
+                            case GameLogic.GameItem.box:
+                                drawingContext.DrawRectangle(Brushes.Brown, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                break;
+                            case GameLogic.GameItem.target:
+                                drawingContext.DrawRectangle(Brushes.Red, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
         }
         public void Resize(Size size)
         {
