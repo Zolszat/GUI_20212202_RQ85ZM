@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nikoban.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,13 @@ namespace Nikoban
         public LevelWindow()
         {
             InitializeComponent();
+            GameLogic logic = new GameLogic();
+            display.SetupModel(logic);
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
         }
     }
 }
