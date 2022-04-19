@@ -31,19 +31,19 @@ namespace Nikoban.Renderer
                         switch (model.Map[i,j])
                         {
                             case GameLogic.GameItem.player:
-                                drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Black, 1), new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight));
                                 break;
                             case GameLogic.GameItem.wall:
-                                drawingContext.DrawRectangle(Brushes.Gray, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                drawingContext.DrawRectangle(Brushes.Gray, new Pen(Brushes.Black, 1), new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight));
                                 break;
                             case GameLogic.GameItem.floor:
-                                drawingContext.DrawRectangle(Brushes.Black, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                drawingContext.DrawRectangle(Brushes.Black, new Pen(Brushes.Black, 1), new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight));
                                 break;
                             case GameLogic.GameItem.box:
-                                drawingContext.DrawRectangle(Brushes.Brown, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                drawingContext.DrawRectangle(Brushes.Brown, new Pen(Brushes.Black, 1), new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight));
                                 break;
                             case GameLogic.GameItem.target:
-                                drawingContext.DrawRectangle(Brushes.Red, new Pen(Brushes.Black, 1), new Rect(i * tileHeight, j * tileWidth, tileWidth, tileHeight));
+                                drawingContext.DrawRectangle(Brushes.Red, new Pen(Brushes.Black, 1), new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight));
                                 break;
                             default:
                                 break;
