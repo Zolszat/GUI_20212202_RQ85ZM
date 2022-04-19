@@ -14,6 +14,7 @@ namespace Nikoban.Logic
             player, wall, floor, box, target // lehetséges elemek a pályán
         }
         public GameItem[,] Map { get; set; }
+        private Queue<string> levels;
         private void LoadMap(string path)
         {
             string[] lines = File.ReadAllLines(path);
