@@ -13,6 +13,10 @@ namespace Nikoban.Logic
         {
             player, wall, floor, box, target // lehetséges elemek a pályán
         }
+        public enum Direction
+        {
+            up, down, left, right
+        }
         public GameItem[,] Map { get; set; }
         private Queue<string> levels;
         public GameLogic()
@@ -36,6 +40,86 @@ namespace Nikoban.Logic
                     Map[i, j] = ConvertToGameItem(lines[i + 2][j]);
                 }
             }
+        }
+        public void Move(Direction direction)
+        {
+            var position = CurrentPosition();
+            int x = position[0];
+            int y = position[1];
+            int old_x = x;
+            int old_y = y;
+            switch (direction)
+            {
+                case Direction.up:
+                    if(y-1>=0)
+                    {
+                        y--;
+                    }
+                    break;
+                case Direction.down:
+                    if(y+1<Map.GetLength(0))
+                    {
+                        y++;
+                    }
+                    break;
+                case Direction.left:
+                    if(x-1>=0)
+                    {
+                        x--;
+                    }
+                    break;
+                case Direction.right:
+                    if(x+1<Map.GetLength(1))
+                    {
+                        x++;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if (Map[x, y] == GameItem.box && direction.Equals(Direction.up) && (Map[x, y - 1] == GameItem.floor || Map[x, y - 1] == GameItem.target)) // dobozt tolunk fel és nincs mögötte fal
+            {
+                Map[old_x, old_y] = GameItem.floor;
+                Map[x, y] = GameItem.player;
+                Map[x, y - 1] = GameItem.box;
+            }
+            else if (Map[x, y] == GameItem.box && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x,y+1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
+            {
+                Map[old_x, old_y] = GameItem.floor;
+                Map[x, y] = GameItem.player;
+                Map[x, y + 1] = GameItem.box;
+            }
+            else if (Map[x, y] == GameItem.box && direction.Equals(Direction.left) && (Map[x-1, y] == GameItem.floor || Map[x-1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
+            {
+                Map[old_x, old_y] = GameItem.floor;
+                Map[x, y] = GameItem.player;
+                Map[x-1, y] = GameItem.box;
+            }
+            else if (Map[x, y] == GameItem.box && direction.Equals(Direction.right) && (Map[x+1, y] == GameItem.floor || Map[x+1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
+            {
+                Map[old_x, old_y] = GameItem.floor;
+                Map[x, y] = GameItem.player;
+                Map[x+1, y] = GameItem.box;
+            }
+            else if(Map[x,y]==GameItem.floor) // üres mezőre lépünk
+            {
+                Map[old_x, old_y] = GameItem.floor;
+                Map[x, y] = GameItem.player;
+            }
+        }
+        private int[] CurrentPosition()
+        {
+            for (int i = 0; i < Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < Map.GetLength(1); j++)
+                {
+                    if(Map[i,j] == GameItem.player)
+                    {
+                        return new int[] { i, j };
+                    }
+                }
+            }
+            return new int[] { -1, -1 };
         }
         private GameItem ConvertToGameItem(char c)
         {
