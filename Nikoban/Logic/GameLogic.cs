@@ -151,6 +151,10 @@ namespace Nikoban.Logic
                     Map[x, y] = GameItem.player;
                 }
             }
+            if(MapDone())
+            {
+                LoadMap(levels.Dequeue());
+            }
         }
         private int[] CurrentPosition()
         {
@@ -165,6 +169,21 @@ namespace Nikoban.Logic
                 }
             }
             return new int[] { -1, -1 };
+        }
+        private bool MapDone()
+        {
+            bool done = true;
+            for (int i = 0; i < Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < Map.GetLength(1) && done; j++)
+                {
+                    if(Map[i,j]!=GameItem.box && TargetCheckMap[i,j]) // target alapból, de nincs rajta doboz
+                    {
+                        done = false;
+                    }
+                }
+            }
+            return done;
         }
         private GameItem ConvertToGameItem(char c)
         {
