@@ -12,7 +12,7 @@ namespace Nikoban.Logic
     {
         public enum GameItem
         {
-            player, wall, floor, box, target, box_on_target // lehetséges elemek a pályán
+            player, wall, floor, box, target, box_on_target, player_on_target // lehetséges elemek a pályán
         }
         public enum Direction
         {
@@ -41,7 +41,7 @@ namespace Nikoban.Logic
             {
                 for (int j = 0; j < Map.GetLength(1); j++)
                 {
-                    if (ConvertToGameItem(lines[i + 2][j]) == GameItem.target || ConvertToGameItem(lines[i + 2][j]) == GameItem.box_on_target)
+                    if (ConvertToGameItem(lines[i + 2][j]) == GameItem.target || ConvertToGameItem(lines[i + 2][j]) == GameItem.box_on_target || ConvertToGameItem(lines[i + 2][j]) == GameItem.player_on_target)
                     {
                         TargetCheckMap[i, j] = true;
                     }
@@ -124,6 +124,11 @@ namespace Nikoban.Logic
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                 }
+                else if (Map[x, y] == GameItem.player_on_target || Map[x, y] == GameItem.floor) // üres mezőre lépünk
+                {
+                    Map[old_x, old_y] = GameItem.target;
+                    Map[x, y] = GameItem.player;
+                }
             }
             else // ha nem target mezőről lépünk el
             {
@@ -155,10 +160,16 @@ namespace Nikoban.Logic
                     Map[x + 1, y] = GameItem.box;
                     score--;
                 }
-                else if (Map[x, y] == GameItem.floor || Map[x,y]==GameItem.target) // üres mezőre lépünk
+                else if (Map[x, y] == GameItem.floor) // üres mezőre lépünk
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
+                    score--;
+                }
+                else if (Map[x, y] == GameItem.target) // targetre lépünk
+                {
+                    Map[old_x, old_y] = GameItem.floor;
+                    Map[x, y] = GameItem.player_on_target;
                     score--;
                 }
             }
@@ -176,7 +187,7 @@ namespace Nikoban.Logic
             {
                 for (int j = 0; j < Map.GetLength(1); j++)
                 {
-                    if(Map[i,j] == GameItem.player)
+                    if(Map[i,j] == GameItem.player || Map[i,j] == GameItem.player_on_target)
                     {
                         return new int[] { i, j };
                     }

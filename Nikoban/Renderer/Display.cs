@@ -50,6 +50,9 @@ namespace Nikoban.Renderer
                             case GameLogic.GameItem.box_on_target:
                                 brush = new ImageBrush(new BitmapImage(new Uri("Images/star_wars_template/box_sw.jpg", UriKind.RelativeOrAbsolute)));
                                 break;
+                            case GameLogic.GameItem.player_on_target:
+                                brush = new ImageBrush(new BitmapImage(new Uri("Images/star_wars_template/player_finish_sw.jpg", UriKind.RelativeOrAbsolute)));
+                                break;
                             default:
                                 break;
                         }
