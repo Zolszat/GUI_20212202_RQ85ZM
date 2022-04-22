@@ -20,11 +20,13 @@ namespace Nikoban
     /// </summary>
     public partial class LevelWindow : Window
     {
+        GameController controller;
         public LevelWindow()
         {
             InitializeComponent();
             GameLogic logic = new GameLogic();
             display.SetupModel(logic);
+            controller = new GameController(logic);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -35,6 +37,12 @@ namespace Nikoban
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            controller.KeyPressed(e.Key);
+            display.InvalidateVisual();
         }
     }
 }
