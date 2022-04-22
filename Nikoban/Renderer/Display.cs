@@ -33,19 +33,22 @@ namespace Nikoban.Renderer
                         switch (model.Map[i,j])
                         {
                             case GameLogic.GameItem.player:
-                                brush = new ImageBrush(new BitmapImage(new Uri("Images/shrek_template/character_s.jpg", UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri("Images/star_wars_template/character_sw.jpg", UriKind.RelativeOrAbsolute)));
                                 break;
                             case GameLogic.GameItem.wall:
-                                brush = new ImageBrush(new BitmapImage(new Uri("Images/shrek_template/wall_s.jpg", UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri("Images/star_wars_template/wall_sw.jpg", UriKind.RelativeOrAbsolute)));
                                 break;
                             case GameLogic.GameItem.floor:
-                                brush = new ImageBrush(new BitmapImage(new Uri("Images/shrek_template/floor_s.jpg", UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri("Images/star_wars_template/floor_sw.jpg", UriKind.RelativeOrAbsolute)));
                                 break;
                             case GameLogic.GameItem.box:
-                                brush = new ImageBrush(new BitmapImage(new Uri("Images/shrek_template/box_s.jpg", UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri("Images/star_wars_template/box_sw.jpg", UriKind.RelativeOrAbsolute)));
                                 break;
                             case GameLogic.GameItem.target:
-                                brush = new ImageBrush(new BitmapImage(new Uri("Images/shrek_template/finish_s.jpg", UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri("Images/star_wars_template/finish_sw.jpg", UriKind.RelativeOrAbsolute)));
+                                break;
+                            case GameLogic.GameItem.box_on_target:
+                                brush = new ImageBrush(new BitmapImage(new Uri("Images/star_wars_template/box_sw.jpg", UriKind.RelativeOrAbsolute)));
                                 break;
                             default:
                                 break;

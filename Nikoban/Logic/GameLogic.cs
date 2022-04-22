@@ -11,7 +11,7 @@ namespace Nikoban.Logic
     {
         public enum GameItem
         {
-            player, wall, floor, box, target // lehetséges elemek a pályán
+            player, wall, floor, box, target, box_on_target // lehetséges elemek a pályán
         }
         public enum Direction
         {
@@ -39,7 +39,7 @@ namespace Nikoban.Logic
             {
                 for (int j = 0; j < Map.GetLength(1); j++)
                 {
-                    if (ConvertToGameItem(lines[i + 2][j]) == GameItem.target)
+                    if (ConvertToGameItem(lines[i + 2][j]) == GameItem.target || ConvertToGameItem(lines[i + 2][j]) == GameItem.box_on_target)
                     {
                         TargetCheckMap[i, j] = true;
                     }
@@ -89,25 +89,25 @@ namespace Nikoban.Logic
             }
             if (TargetCheckMap[old_x, old_y] == true) // ha target mezőről lépünk el
             {
-                if (Map[x, y] == GameItem.box && direction.Equals(Direction.up) && (Map[x, y - 1] == GameItem.floor || Map[x, y - 1] == GameItem.target)) // dobozt tolunk fel és nincs mögötte fal
+                if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.up) && (Map[x, y - 1] == GameItem.floor || Map[x, y - 1] == GameItem.target)) // dobozt tolunk fel és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x, y - 1] = GameItem.box;
                 }
-                else if (Map[x, y] == GameItem.box && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
+                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x, y + 1] = GameItem.box;
                 }
-                else if (Map[x, y] == GameItem.box && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
+                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x - 1, y] = GameItem.box;
                 }
-                else if (Map[x, y] == GameItem.box && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
+                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
@@ -121,25 +121,25 @@ namespace Nikoban.Logic
             }
             else // ha nem target mezőről lépünk el
             {
-                if (Map[x, y] == GameItem.box && direction.Equals(Direction.up) && (Map[x, y - 1] == GameItem.floor || Map[x, y - 1] == GameItem.target)) // dobozt tolunk fel és nincs mögötte fal
+                if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.up) && (Map[x, y - 1] == GameItem.floor || Map[x, y - 1] == GameItem.target)) // dobozt tolunk fel és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
                     Map[x, y - 1] = GameItem.box;
                 }
-                else if (Map[x, y] == GameItem.box && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
+                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
                     Map[x, y + 1] = GameItem.box;
                 }
-                else if (Map[x, y] == GameItem.box && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
+                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
                     Map[x - 1, y] = GameItem.box;
                 }
-                else if (Map[x, y] == GameItem.box && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
+                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
@@ -197,6 +197,8 @@ namespace Nikoban.Logic
                     return GameItem.box;
                 case 'T':
                     return GameItem.target;
+                case 'X':
+                    return GameItem.box_on_target;
                 default:
                     return GameItem.floor;
             }
