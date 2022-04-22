@@ -28,7 +28,6 @@ namespace Nikoban.Logic
                 levels.Enqueue(item);
             }
             LoadMap(levels.Dequeue());
-
         }
         private void LoadMap(string path)
         {
