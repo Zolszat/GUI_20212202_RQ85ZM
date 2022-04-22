@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Nikoban.Logic
 {
@@ -22,6 +23,7 @@ namespace Nikoban.Logic
         private Queue<string> levels;
         public GameLogic()
         {
+            score = 0;
             levels = new Queue<string>();
             foreach(var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(),"Levels")))
             {
@@ -31,6 +33,7 @@ namespace Nikoban.Logic
         }
         private void LoadMap(string path)
         {
+            score += 100;
             string[] lines = File.ReadAllLines(path);
             Map = new GameItem[int.Parse(lines[0]), int.Parse(lines[1])];
             TargetCheckMap = new bool[int.Parse(lines[0]), int.Parse(lines[1])];
@@ -93,24 +96,28 @@ namespace Nikoban.Logic
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x, y - 1] = GameItem.box;
+                    score--;
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x, y + 1] = GameItem.box;
+                    score--;
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x - 1, y] = GameItem.box;
+                    score--;
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x + 1, y] = GameItem.box;
+                    score--;
                 }
                 else if (Map[x, y] == GameItem.floor || Map[x, y] == GameItem.target) // üres mezőre lépünk
                 {
@@ -125,36 +132,44 @@ namespace Nikoban.Logic
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
                     Map[x, y - 1] = GameItem.box;
+                    score--;
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
                     Map[x, y + 1] = GameItem.box;
+                    score--;
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
                     Map[x - 1, y] = GameItem.box;
+                    score--;
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
                     Map[x + 1, y] = GameItem.box;
+                    score--;
                 }
                 else if (Map[x, y] == GameItem.floor || Map[x,y]==GameItem.target) // üres mezőre lépünk
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
+                    score--;
                 }
             }
+
             if(MapDone())
             {
+                MessageBox.Show($"{score}");
                 LoadMap(levels.Dequeue());
             }
         }
+        private int score; // játékos pontszáma (PBA-LSZ-EIM-BP lásd specifikáció/pontozás)
         private int[] CurrentPosition()
         {
             for (int i = 0; i < Map.GetLength(0); i++)
