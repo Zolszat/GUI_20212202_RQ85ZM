@@ -134,31 +134,71 @@ namespace Nikoban.Logic
             {
                 if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.up) && (Map[x, y - 1] == GameItem.floor || Map[x, y - 1] == GameItem.target)) // dobozt tolunk fel és nincs mögötte fal
                 {
-                    Map[old_x, old_y] = GameItem.floor;
-                    Map[x, y] = GameItem.player;
-                    Map[x, y - 1] = GameItem.box;
-                    score--;
+                    if (Map[x, y] == GameItem.box_on_target)
+                    {
+                        Map[old_x, old_y] = GameItem.floor;
+                        Map[x, y] = GameItem.player_on_target;
+                        Map[x, y - 1] = GameItem.box;
+                        score--;
+                    }
+                    else
+                    {
+                        Map[old_x, old_y] = GameItem.floor;
+                        Map[x, y] = GameItem.player;
+                        Map[x, y - 1] = GameItem.box;
+                        score--;
+                    }
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
                 {
-                    Map[old_x, old_y] = GameItem.floor;
-                    Map[x, y] = GameItem.player;
-                    Map[x, y + 1] = GameItem.box;
-                    score--;
+                    if (Map[x, y] == GameItem.box_on_target)
+                    {
+                        Map[old_x, old_y] = GameItem.floor;
+                        Map[x, y] = GameItem.player_on_target;
+                        Map[x, y + 1] = GameItem.box;
+                        score--;
+                    }
+                    else
+                    {
+                        Map[old_x, old_y] = GameItem.floor;
+                        Map[x, y] = GameItem.player;
+                        Map[x, y + 1] = GameItem.box;
+                        score--;
+                    }
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
                 {
-                    Map[old_x, old_y] = GameItem.floor;
-                    Map[x, y] = GameItem.player;
-                    Map[x - 1, y] = GameItem.box;
-                    score--;
+                    if (Map[x, y] == GameItem.box_on_target)
+                    {
+                        Map[old_x, old_y] = GameItem.floor;
+                        Map[x, y] = GameItem.player_on_target;
+                        Map[x - 1, y] = GameItem.box;
+                        score--;
+                    }
+                    else
+                    {
+                        Map[old_x, old_y] = GameItem.floor;
+                        Map[x, y] = GameItem.player;
+                        Map[x - 1, y] = GameItem.box;
+                        score--;
+                    }
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
                 {
-                    Map[old_x, old_y] = GameItem.floor;
-                    Map[x, y] = GameItem.player;
-                    Map[x + 1, y] = GameItem.box;
-                    score--;
+                    if(Map[x, y] == GameItem.box_on_target)
+                    {
+                        Map[old_x, old_y] = GameItem.floor;
+                        Map[x, y] = GameItem.player_on_target;
+                        Map[x + 1, y] = GameItem.box;
+                        score--;
+                    }
+                    else
+                    {
+                        Map[old_x, old_y] = GameItem.floor;
+                        Map[x, y] = GameItem.player;
+                        Map[x + 1, y] = GameItem.box;
+                        score--;
+                    }
                 }
                 else if (Map[x, y] == GameItem.floor) // üres mezőre lépünk
                 {
@@ -166,7 +206,7 @@ namespace Nikoban.Logic
                     Map[x, y] = GameItem.player;
                     score--;
                 }
-                else if (Map[x, y] == GameItem.target) // targetre lépünk
+                else if (Map[x, y] == GameItem.target || Map[x, y] == GameItem.box_on_target) // targetre lépünk
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player_on_target;
