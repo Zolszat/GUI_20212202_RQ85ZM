@@ -60,6 +60,7 @@ namespace Nikoban.Logic
             int y = position[1];
             int old_x = x;
             int old_y = y;
+            bool box_stuck = false;
             switch (direction)
             {
                 case Direction.up:
@@ -97,6 +98,10 @@ namespace Nikoban.Logic
                     Map[x, y] = GameItem.player;
                     Map[x, y - 1] = GameItem.box;
                     score--;
+                    if(BoxStuck(x,y-1))
+                    {
+                        box_stuck = true;
+                    }
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
                 {
@@ -104,6 +109,10 @@ namespace Nikoban.Logic
                     Map[x, y] = GameItem.player;
                     Map[x, y + 1] = GameItem.box;
                     score--;
+                    if (BoxStuck(x, y + 1))
+                    {
+                        box_stuck = true;
+                    }
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
                 {
@@ -111,6 +120,10 @@ namespace Nikoban.Logic
                     Map[x, y] = GameItem.player;
                     Map[x - 1, y] = GameItem.box;
                     score--;
+                    if (BoxStuck(x-1, y))
+                    {
+                        box_stuck = true;
+                    }
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
                 {
@@ -118,6 +131,10 @@ namespace Nikoban.Logic
                     Map[x, y] = GameItem.player;
                     Map[x + 1, y] = GameItem.box;
                     score--;
+                    if (BoxStuck(x+1, y))
+                    {
+                        box_stuck = true;
+                    }
                 }
                 else if (Map[x, y] == GameItem.floor || Map[x, y] == GameItem.target) // üres mezőre lépünk
                 {
@@ -148,6 +165,10 @@ namespace Nikoban.Logic
                         Map[x, y - 1] = GameItem.box;
                         score--;
                     }
+                    if (BoxStuck(x, y - 1))
+                    {
+                        box_stuck = true;
+                    }
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
                 {
@@ -164,6 +185,10 @@ namespace Nikoban.Logic
                         Map[x, y] = GameItem.player;
                         Map[x, y + 1] = GameItem.box;
                         score--;
+                    }
+                    if (BoxStuck(x, y + 1))
+                    {
+                        box_stuck = true;
                     }
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
@@ -182,6 +207,10 @@ namespace Nikoban.Logic
                         Map[x - 1, y] = GameItem.box;
                         score--;
                     }
+                    if (BoxStuck(x - 1, y))
+                    {
+                        box_stuck = true;
+                    }
                 }
                 else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
                 {
@@ -199,6 +228,10 @@ namespace Nikoban.Logic
                         Map[x + 1, y] = GameItem.box;
                         score--;
                     }
+                    if (BoxStuck(x + 1, y))
+                    {
+                        box_stuck = true;
+                    }
                 }
                 else if (Map[x, y] == GameItem.floor) // üres mezőre lépünk
                 {
@@ -213,7 +246,10 @@ namespace Nikoban.Logic
                     score--;
                 }
             }
-
+            if(box_stuck)
+            {
+                MessageBox.Show("BERAGADT A DOBOZ");
+            }
             if(MapDone())
             {
                 MessageBox.Show($"{score}");
