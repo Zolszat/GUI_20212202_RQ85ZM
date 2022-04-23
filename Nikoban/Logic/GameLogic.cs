@@ -235,6 +235,40 @@ namespace Nikoban.Logic
             }
             return new int[] { -1, -1 };
         }
+        private bool BoxStuck(int x, int y) // ellenőrzi, hogy egy doboz olyan helyzetben van-e, ahonnan már biztosan nem lehet tovább mozgatni és nincs a helyén
+        {
+            var u = Map[x, y - 1];
+            var r = Map[x + 1, y];
+            var l = Map[x - 1, y];
+            var d = Map[x, y + 1];
+            if (Map[x, y] == GameItem.box)
+            {
+                if (u == GameItem.wall && (r == GameItem.wall || l == GameItem.wall))
+                {
+                    return true;
+                }
+                else if (r == GameItem.wall && (u == GameItem.wall || d == GameItem.wall))
+                {
+                    return true;
+                }
+                else if (l == GameItem.wall && (u == GameItem.wall || d == GameItem.wall))
+                {
+                    return true;
+                }
+                else if (d == GameItem.wall && (r == GameItem.wall || l == GameItem.wall))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
         private bool MapDone()
         {
             bool done = true;
