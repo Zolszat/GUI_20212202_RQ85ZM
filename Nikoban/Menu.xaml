@@ -1,0 +1,63 @@
+﻿<Window x:Class="Nikoban.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:Nikoban"
+        mc:Ignorable="d"
+        Title="Menu" Height="450" Width="800">
+    <Grid>
+
+        <Grid Margin="103,44,110,121" RenderTransformOrigin="0.421,0.635">
+            <Grid.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FF201397" Offset="0"/>
+                </RadialGradientBrush>
+            </Grid.Background>
+            <Image gif:ImageBehavior.AnimatedSource="Images/menu/animated.gif" Margin="-26,0,-38,0" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.072"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.399"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Grid>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/menu.png"/>
+            </Grid.Background>
+            <Grid HorizontalAlignment="Center" Height="157" Margin="0,97,0,0" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Button Content="Play" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_1">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="1" Content="Scores"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="2" Content="Credits" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Button Margin="460,344,94,27" Content="Exit" FontFamily="DigifaceWide" FontSize="19" Foreground="White" BorderBrush="{x:Null}" Click="Button_Click" FontStretch="Medium">
+                <Button.Background>
+                    <ImageBrush ImageSource="/button2.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
