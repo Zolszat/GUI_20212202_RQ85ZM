@@ -46,5 +46,27 @@ namespace Nikoban
             buttongrid2.Visibility = Visibility.Hidden;
             this.Show();
         }
+
+        private void Button_Click_S(object sender, RoutedEventArgs e)
+        {
+            LevelWindow lvl = new LevelWindow();
+            lvl.display.Selected_texture = Renderer.SelectedTexture.shrek;
+            this.Hide();
+            lvl.ShowDialog();
+            buttongrid.Visibility = Visibility.Visible;
+            buttongrid2.Visibility = Visibility.Hidden;
+            this.Show();
+        }
+
+        private void Button_Click_SW(object sender, RoutedEventArgs e)
+        {
+            LevelWindow lvl = new LevelWindow();
+            lvl.display.Selected_texture = Renderer.SelectedTexture.star_wars;
+            this.Hide();
+            lvl.ShowDialog();
+            buttongrid.Visibility = Visibility.Visible;
+            buttongrid2.Visibility = Visibility.Hidden;
+            this.Show();
+        }
     }
 }
