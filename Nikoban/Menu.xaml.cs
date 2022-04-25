@@ -22,6 +22,7 @@ namespace Nikoban
         public Menu()
         {
             InitializeComponent();
+            buttongrid2.Visibility = Visibility.Hidden;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -31,9 +32,18 @@ namespace Nikoban
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            buttongrid.Visibility = Visibility.Hidden;
+            buttongrid2.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_P(object sender, RoutedEventArgs e)
+        {
             LevelWindow lvl = new LevelWindow();
+            lvl.display.Selected_texture = Renderer.SelectedTexture.pirate;
+            this.Hide();
             lvl.ShowDialog();
+            buttongrid.Visibility = Visibility.Visible;
+            buttongrid2.Visibility = Visibility.Hidden;
             this.Show();
         }
     }

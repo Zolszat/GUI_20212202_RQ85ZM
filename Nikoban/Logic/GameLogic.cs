@@ -305,6 +305,7 @@ namespace Nikoban.Logic
                 return false;
             }
         }
+
         private bool MapDone()
         {
             bool done = true;

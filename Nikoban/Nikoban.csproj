@@ -10,6 +10,9 @@
     <None Remove="button1.jpg" />
     <None Remove="button2.png" />
     <None Remove="Images\menu\animated.gif" />
+    <None Remove="Images\menu\button1.jpg" />
+    <None Remove="Images\menu\button2.png" />
+    <None Remove="Images\menu\menu.png" />
     <None Remove="Images\pirate_template\box_p.jpg" />
     <None Remove="Images\pirate_template\character_p.jpg" />
     <None Remove="Images\pirate_template\finish_p.jpg" />
@@ -188,9 +191,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="button1.jpg" />
-    <Resource Include="button2.png" />
-    <Resource Include="menu.png" />
+    <Content Include="Images\menu\button1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\menu\button2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\menu\menu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -29,9 +29,9 @@
         </Grid>
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="/menu.png"/>
+                <ImageBrush ImageSource="Images/menu/menu.png"/>
             </Grid.Background>
-            <Grid HorizontalAlignment="Center" Height="157" Margin="0,97,0,0" VerticalAlignment="Top">
+            <Grid HorizontalAlignment="Center" Height="157" Margin="0,97,0,0" VerticalAlignment="Top" x:Name="buttongrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -39,23 +39,47 @@
                 </Grid.RowDefinitions>
                 <Button Content="Play" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_1">
                     <Button.Background>
-                        <ImageBrush ImageSource="/button1.jpg"/>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>
                 </Button>
                 <Button Grid.Row="1" Content="Scores"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
                     <Button.Background>
-                        <ImageBrush ImageSource="/button1.jpg"/>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>
                 </Button>
                 <Button Grid.Row="2" Content="Credits" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
                     <Button.Background>
-                        <ImageBrush ImageSource="/button1.jpg"/>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Grid HorizontalAlignment="Center" Height="157" Margin="0,97,0,0" VerticalAlignment="Top" x:Name="buttongrid2" Width="238">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Choose a texture!" Foreground="White" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="DigifaceWide" Grid.Row="0" Background="#FF0C1534"/>
+                <Button Grid.Row="1" Content="Pirate" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_P">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="2" Content="Shrek"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="3" Content="Star wars" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>
                 </Button>
             </Grid>
             <Button Margin="460,344,94,27" Content="Exit" FontFamily="DigifaceWide" FontSize="19" Foreground="White" BorderBrush="{x:Null}" Click="Button_Click" FontStretch="Medium">
                 <Button.Background>
-                    <ImageBrush ImageSource="/button2.png"/>
+                    <ImageBrush ImageSource="Images/menu/button2.png"/>
                 </Button.Background>
             </Button>
         </Grid>
