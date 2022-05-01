@@ -22,10 +22,11 @@ namespace Nikoban
     public partial class LevelWindow : Window
     {
         GameController controller;
+        GameLogic logic;
         public LevelWindow()
         {
             InitializeComponent();
-            GameLogic logic = new GameLogic();
+            logic = new GameLogic();
             display.SetupModel(logic);
             controller = new GameController(logic);
         }
@@ -44,6 +45,12 @@ namespace Nikoban
         {
             controller.KeyPressed(e.Key);
             display.InvalidateVisual();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            ScoreWindow scoreW = new ScoreWindow();
+            scoreW.ShowDialog();
         }
     }
 }

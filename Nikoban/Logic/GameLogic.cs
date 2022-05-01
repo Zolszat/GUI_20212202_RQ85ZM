@@ -20,14 +20,14 @@ namespace Nikoban.Logic
         }
         public GameItem[,] Map { get; set; }
         public bool[,] TargetCheckMap { get; set; }
-        public bool shouldICloseTheWindow = false;
+        public int Life { get; set; }
+        public bool ShouldICloseTheWindow { get; set; }
         private List<string> levels;
-        private int life;
         int levelIndex = 0;
         public GameLogic()
         {
             score = 0;
-            life = 5;
+            Life = 5;
             levels = new List<string>();
             foreach(var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(),"Levels")))
             {
@@ -259,17 +259,18 @@ namespace Nikoban.Logic
             }
             if(box_stuck)
             {
-                MessageBox.Show("The box stucked. You lose 1 HP and you can restart the level.");
-                if(life != 0)
+                if(Life > 1)
                 {
-                    life--;
+                    Life--;
+                    MessageBox.Show($"The box stucked. You have {Life} life left.");
+                    score--;
                     LoadMap(levels[levelIndex]);
 
                 }
                 else
                 {
                     MessageBox.Show($"Defeat! Your score is: {score}");
-                    shouldICloseTheWindow = true;
+                    ShouldICloseTheWindow = true;
                 }
                 
             }
@@ -284,7 +285,7 @@ namespace Nikoban.Logic
                 else
                 {
                     MessageBox.Show($"Victory! Your score is: {score}");
-                    shouldICloseTheWindow = true;
+                    ShouldICloseTheWindow = true;
                 }
             }
         }

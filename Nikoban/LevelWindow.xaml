@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Nikoban"
         xmlns:renderer="clr-namespace:Nikoban.Renderer"
         mc:Ignorable="d"
-        Title="LevelWindow" Height="450" Width="800" SizeChanged="Window_SizeChanged" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
+        Title="LevelWindow" Height="450" Width="800" SizeChanged="Window_SizeChanged" Loaded="Window_Loaded" KeyDown="Window_KeyDown" Closed="Window_Closed">
     <Grid x:Name="grid">
         <renderer:Display x:Name="display"/>
     </Grid>
