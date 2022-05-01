@@ -20,16 +20,27 @@ namespace Nikoban.Logic
         }
         public GameItem[,] Map { get; set; }
         public bool[,] TargetCheckMap { get; set; }
-        private Queue<string> levels;
+        public bool shouldICloseTheWindow = false;
+        private List<string> levels;
+        private int life;
+        int levelIndex = 0;
         public GameLogic()
         {
             score = 0;
-            levels = new Queue<string>();
+            life = 5;
+            levels = new List<string>();
             foreach(var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(),"Levels")))
             {
-                levels.Enqueue(item);
+                levels.Add(item);
             }
-            LoadMap(levels.Dequeue());
+            if(levelIndex <= levels.Count)
+            {
+                LoadMap(levels[levelIndex]);
+            }
+            else
+            {
+                Environment.Exit(5);
+            }
         }
         private void LoadMap(string path)
         {
@@ -248,12 +259,33 @@ namespace Nikoban.Logic
             }
             if(box_stuck)
             {
-                MessageBox.Show("BERAGADT A DOBOZ");
+                MessageBox.Show("The box stucked. You lose 1 HP and you can restart the level.");
+                if(life != 0)
+                {
+                    life--;
+                    LoadMap(levels[levelIndex]);
+
+                }
+                else
+                {
+                    MessageBox.Show($"Defeat! Your score is: {score}");
+                    shouldICloseTheWindow = true;
+                }
+                
             }
             if(MapDone())
             {
-                MessageBox.Show($"{score}");
-                LoadMap(levels.Dequeue());
+                if(levelIndex <= levels.Count)
+                {
+                    MessageBox.Show($"{score}");
+                    levelIndex++;
+                    LoadMap(levels[levelIndex]);
+                }
+                else
+                {
+                    MessageBox.Show($"Victory! Your score is: {score}");
+                    shouldICloseTheWindow = true;
+                }
             }
         }
         private int score; // játékos pontszáma (PBA-LSZ-EIM-BP lásd specifikáció/pontozás)
