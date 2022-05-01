@@ -37,10 +37,6 @@ namespace Nikoban.Logic
             {
                 LoadMap(levels[levelIndex]);
             }
-            else
-            {
-                Environment.Exit(5);
-            }
         }
         private void LoadMap(string path)
         {
@@ -288,9 +284,16 @@ namespace Nikoban.Logic
                 else
                 {
                     MessageBox.Show($"Defeat! Your score is: {score}");
-                    ShouldICloseTheWindow = true;
+
+                    foreach (var item in Application.Current.Windows)
+                    {
+                        if(item is LevelWindow)
+                        {
+                            (item as Window).Close();
+                        }
+
+                    }
                 }
-                
             }
             if(MapDone())
             {
@@ -303,10 +306,19 @@ namespace Nikoban.Logic
                 else
                 {
                     MessageBox.Show($"Victory! Your score is: {score}");
-                    ShouldICloseTheWindow = true;
+                    foreach (var item in Application.Current.Windows)
+                    {
+                        if (item is LevelWindow)
+                        {
+                            (item as Window).Close();
+                        }
+
+                    }
                 }
             }
         }
+
+
         private int score; // játékos pontszáma (PBA-LSZ-EIM-BP lásd specifikáció/pontozás)
         private int[] CurrentPosition()
         {
@@ -399,5 +411,7 @@ namespace Nikoban.Logic
             }
             return false;
         }
+
+
     }
 }

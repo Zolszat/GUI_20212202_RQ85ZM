@@ -7,60 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="button1.jpg" />
-    <None Remove="button2.png" />
-    <None Remove="Images\menu\animated.gif" />
-    <None Remove="Images\menu\button1.jpg" />
-    <None Remove="Images\menu\button2.png" />
-    <None Remove="Images\menu\menu.png" />
     <None Remove="Images\pirate_template\box_p.jpg" />
     <None Remove="Images\pirate_template\character_p.jpg" />
     <None Remove="Images\pirate_template\finish_p.jpg" />
     <None Remove="Images\pirate_template\floor_p.jpg" />
     <None Remove="Images\pirate_template\floor_water_p.jpg" />
-    <None Remove="Images\pirate_template\player_finish_p.jpg" />
     <None Remove="Images\pirate_template\wall_p.jpg" />
     <None Remove="Images\shrek_template\box_s.jpg" />
     <None Remove="Images\shrek_template\character_s.jpg" />
     <None Remove="Images\shrek_template\finish_s.jpg" />
     <None Remove="Images\shrek_template\floor_s.jpg" />
     <None Remove="Images\shrek_template\floor_water_s.jpg" />
-    <None Remove="Images\shrek_template\player_finish_s.jpg" />
     <None Remove="Images\shrek_template\wall_s.jpg" />
     <None Remove="Images\star_wars_template\box_sw.jpg" />
     <None Remove="Images\star_wars_template\character_sw.jpg" />
     <None Remove="Images\star_wars_template\finish_sw.jpg" />
     <None Remove="Images\star_wars_template\floor_planet_sw.jpg" />
     <None Remove="Images\star_wars_template\floor_sw.jpg" />
-    <None Remove="Images\star_wars_template\player_finish_sw.jpg" />
     <None Remove="Images\star_wars_template\wall_sw.jpg" />
-    <None Remove="Levels\01.txt" />
-    <None Remove="Levels\02.txt" />
-    <None Remove="Levels\03.txt" />
-    <None Remove="Levels\04.txt" />
-    <None Remove="Levels\05.txt" />
-    <None Remove="Levels\06.txt" />
-    <None Remove="Levels\07.txt" />
-    <None Remove="Levels\08.txt" />
-    <None Remove="Levels\09.txt" />
-    <None Remove="Levels\10.txt" />
-    <None Remove="Levels\11.txt" />
-    <None Remove="Levels\12.txt" />
-    <None Remove="Levels\13.txt" />
-    <None Remove="Levels\14.txt" />
-    <None Remove="Levels\15.txt" />
-    <None Remove="Levels\16.txt" />
-    <None Remove="Levels\17.txt" />
-    <None Remove="Levels\18.txt" />
-    <None Remove="Levels\19.txt" />
-    <None Remove="Levels\20.txt" />
-    <None Remove="menu.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\menu\animated.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\pirate_template\box_p.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -74,9 +41,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\pirate_template\floor_water_p.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\pirate_template\player_finish_p.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\pirate_template\wall_p.jpg">
@@ -97,9 +61,6 @@
     <Content Include="Images\shrek_template\floor_water_s.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\shrek_template\player_finish_s.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\shrek_template\wall_s.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -118,88 +79,13 @@
     <Content Include="Images\star_wars_template\floor_sw.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\star_wars_template\player_finish_sw.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\star_wars_template\wall_sw.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Levels\01.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\02.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\03.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\04.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\05.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\06.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\07.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\08.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\09.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\10.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\11.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\12.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\13.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\14.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\15.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\16.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\17.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\18.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\19.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\20.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Images\menu\button1.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\menu\button2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\menu\menu.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Folder Include="Images\menu\" />
   </ItemGroup>
 
 </Project>

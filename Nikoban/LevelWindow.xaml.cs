@@ -39,6 +39,7 @@ namespace Nikoban
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+            
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -49,8 +50,8 @@ namespace Nikoban
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            ScoreWindow scoreW = new ScoreWindow();
-            scoreW.ShowDialog();
+            ScoreWindow sw = new ScoreWindow();
+            sw.ShowDialog();
         }
     }
 }

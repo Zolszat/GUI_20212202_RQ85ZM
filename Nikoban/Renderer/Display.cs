@@ -139,8 +139,6 @@ namespace Nikoban.Renderer
                         }
                     }
                 }
-                
-                
             }
         }
         public void Resize(Size size)
