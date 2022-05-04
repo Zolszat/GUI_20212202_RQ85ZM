@@ -14,11 +14,18 @@ namespace Nikoban.Logic
         {
             player, wall, floor, box, target, box_on_target, player_on_target // lehetséges elemek a pályán
         }
+        public enum GameMode
+        {
+            funmode, playthrough
+        }
         public enum Direction
         {
             up, down, left, right
         }
+        private Random r;
+        int funIndex;
         public GameItem[,] Map { get; set; }
+        public GameMode gameMode { get; set; }
         public bool[,] TargetCheckMap { get; set; }
         public int Life { get; set; }
         public bool ShouldICloseTheWindow { get; set; }
@@ -26,6 +33,8 @@ namespace Nikoban.Logic
         int levelIndex = 0;
         public GameLogic()
         {
+            r = new Random();
+            gameMode = GameMode.funmode;
             score = 0;
             Life = 5;
             levels = new List<string>();
@@ -33,10 +42,9 @@ namespace Nikoban.Logic
             {
                 levels.Add(item);
             }
-            if(levelIndex <= levels.Count)
-            {
-                LoadMap(levels[levelIndex]);
-            }
+            LoadMap(levels[levelIndex]);
+
+            funIndex = r.Next(0, levels.Count - 1);
         }
         private void LoadMap(string path)
         {
@@ -107,7 +115,10 @@ namespace Nikoban.Logic
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x, y - 1] = GameItem.box;
-                    score--;
+                    if(gameMode == GameMode.playthrough)
+                    {
+                        score--;
+                    }
                     if(BoxStuck(x,y-1))
                     {
                         box_stuck = true;
@@ -120,7 +131,10 @@ namespace Nikoban.Logic
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x, y + 1] = GameItem.box;
-                    score--;
+                    if (gameMode == GameMode.playthrough)
+                    {
+                        score--;
+                    }
                     if (BoxStuck(x, y + 1))
                     {
                         box_stuck = true;
@@ -133,7 +147,10 @@ namespace Nikoban.Logic
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x - 1, y] = GameItem.box;
-                    score--;
+                    if (gameMode == GameMode.playthrough)
+                    {
+                        score--;
+                    }
                     if (BoxStuck(x-1, y))
                     {
                         box_stuck = true;
@@ -146,7 +163,10 @@ namespace Nikoban.Logic
                     Map[old_x, old_y] = GameItem.target;
                     Map[x, y] = GameItem.player;
                     Map[x + 1, y] = GameItem.box;
-                    score--;
+                    if (gameMode == GameMode.playthrough)
+                    {
+                        score--;
+                    }
                     if (BoxStuck(x+1, y))
                     {
                         box_stuck = true;
@@ -174,14 +194,21 @@ namespace Nikoban.Logic
                         Map[old_x, old_y] = GameItem.floor;
                         Map[x, y] = GameItem.player_on_target;
                         Map[x, y - 1] = GameItem.box;
-                        score--;
+
+                        if (gameMode == GameMode.playthrough)
+                        {
+                            score--;
+                        }
                     }
                     else
                     {
                         Map[old_x, old_y] = GameItem.floor;
                         Map[x, y] = GameItem.player;
                         Map[x, y - 1] = GameItem.box;
-                        score--;
+                        if (gameMode == GameMode.playthrough)
+                        {
+                            score--;
+                        }
                     }
                     if (BoxStuck(x, y - 1))
                     {
@@ -197,14 +224,20 @@ namespace Nikoban.Logic
                         Map[old_x, old_y] = GameItem.floor;
                         Map[x, y] = GameItem.player_on_target;
                         Map[x, y + 1] = GameItem.box;
-                        score--;
+                        if (gameMode == GameMode.playthrough)
+                        {
+                            score--;
+                        }
                     }
                     else
                     {
                         Map[old_x, old_y] = GameItem.floor;
                         Map[x, y] = GameItem.player;
                         Map[x, y + 1] = GameItem.box;
-                        score--;
+                        if (gameMode == GameMode.playthrough)
+                        {
+                            score--;
+                        }
                     }
                     if (BoxStuck(x, y + 1))
                     {
@@ -220,14 +253,20 @@ namespace Nikoban.Logic
                         Map[old_x, old_y] = GameItem.floor;
                         Map[x, y] = GameItem.player_on_target;
                         Map[x - 1, y] = GameItem.box;
-                        score--;
+                        if (gameMode == GameMode.playthrough)
+                        {
+                            score--;
+                        }
                     }
                     else
                     {
                         Map[old_x, old_y] = GameItem.floor;
                         Map[x, y] = GameItem.player;
                         Map[x - 1, y] = GameItem.box;
-                        score--;
+                        if (gameMode == GameMode.playthrough)
+                        {
+                            score--;
+                        }
                     }
                     if (BoxStuck(x - 1, y))
                     {
@@ -243,14 +282,20 @@ namespace Nikoban.Logic
                         Map[old_x, old_y] = GameItem.floor;
                         Map[x, y] = GameItem.player_on_target;
                         Map[x + 1, y] = GameItem.box;
-                        score--;
+                        if (gameMode == GameMode.playthrough)
+                        {
+                            score--;
+                        }
                     }
                     else
                     {
                         Map[old_x, old_y] = GameItem.floor;
                         Map[x, y] = GameItem.player;
                         Map[x + 1, y] = GameItem.box;
-                        score--;
+                        if (gameMode == GameMode.playthrough)
+                        {
+                            score--;
+                        }
                     }
                     if (BoxStuck(x + 1, y))
                     {
@@ -261,14 +306,20 @@ namespace Nikoban.Logic
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player;
-                    score--;
+                    if (gameMode == GameMode.playthrough)
+                    {
+                        score--;
+                    }
                 }
                 else if (Map[x, y] == GameItem.target || Map[x, y] == GameItem.box_on_target 
                     && EmptySpace(Map[x+x-old_x,y+y-old_y]) ) // targetre lépünk
                 {
                     Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player_on_target;
-                    score--;
+                    if (gameMode == GameMode.playthrough)
+                    {
+                        score--;
+                    }
                 }
             }
             if(box_stuck)
@@ -277,14 +328,27 @@ namespace Nikoban.Logic
                 {
                     Life--;
                     MessageBox.Show($"The box stucked. You have {Life} life left.");
-                    score--;
-                    LoadMap(levels[levelIndex]);
-
+                    if (gameMode == GameMode.playthrough)
+                    {
+                        score--;
+                        LoadMap(levels[levelIndex]);
+                    }
+                    else
+                    {
+                        LoadMap(levels[funIndex]);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show($"Defeat! Your score is: {score}");
-
+                    if (gameMode == GameMode.playthrough)
+                    {
+                        MessageBox.Show($"Defeat! Your score is: {score}");
+                        WriteToText(score.ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Defeat!");
+                    }
                     foreach (var item in Application.Current.Windows)
                     {
                         if(item is LevelWindow)
@@ -297,27 +361,61 @@ namespace Nikoban.Logic
             }
             if(MapDone())
             {
-                if(levelIndex <= levels.Count)
+                if (levelIndex <= levels.Count && gameMode == GameMode.playthrough)
                 {
                     MessageBox.Show($"{score}");
                     levelIndex++;
                     LoadMap(levels[levelIndex]);
                 }
-                else
+                else if(levelIndex > levels.Count && gameMode == GameMode.playthrough)
                 {
                     MessageBox.Show($"Victory! Your score is: {score}");
+                    WriteToText(score.ToString());
                     foreach (var item in Application.Current.Windows)
                     {
                         if (item is LevelWindow)
                         {
                             (item as Window).Close();
                         }
-
                     }
                 }
+                else
+                {
+                    if(MessageBox.Show("Do you want to play more?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        funIndex = r.Next(1, levels.Count - 1);
+                        LoadMap(levels[funIndex]);
+                    }
+                    else
+                    {
+                        foreach (var item in Application.Current.Windows)
+                        {
+                            if (item is LevelWindow)
+                            {
+                                (item as Window).Close();
+                            }
+                        }
+                    }
+                }
+                
             }
         }
 
+        private void WriteToText(string text)
+        {
+            string file = "score.txt";
+            if (!File.Exists(file))
+            {
+                StreamWriter sw = File.CreateText(file);
+                sw.WriteLine(text);
+
+            }
+            else
+            {
+                StreamWriter sw = File.AppendText(file);
+                sw.WriteLine(text);
+            }
+        }
 
         private int score; // játékos pontszáma (PBA-LSZ-EIM-BP lásd specifikáció/pontozás)
         private int[] CurrentPosition()

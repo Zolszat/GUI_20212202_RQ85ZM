@@ -47,7 +47,24 @@
                         <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>
                 </Button>
-                <Button Grid.Row="2" Content="Credits" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
+                <Button Grid.Row="2" Content="Credits" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_Credits">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Grid HorizontalAlignment="Center" Margin="0,97,0,0" VerticalAlignment="Top" x:Name="credit" Width="330">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Credits" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="DigifaceWide" Grid.Row="0" Background="#FF0C1534"/>
+                <TextBlock TextWrapping="Wrap" Text="Füller Lajos: Game idea and Game logic" FontSize="18" Foreground="White" FontFamily="Candara Light" Grid.Row="1" Background="#FF0C1534"/>
+                <TextBlock TextWrapping="Wrap" Text="Németh Helga: UI design and Game logic" FontSize="18" Foreground="White" FontFamily="Candara Light" Grid.Row="2" Background="#FF0C1534"/>
+                <TextBlock TextWrapping="Wrap" Text="Szatmári Zoltán: Map generating, Game logic and Score system" FontSize="18" FontFamily="Candara Light" Grid.Row="3" Foreground="White" Background="#FF0C1534"/>
+                <Button Content="Back"  VerticalAlignment="Bottom" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="102" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_CreditBack">
                     <Button.Background>
                         <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>
@@ -55,6 +72,7 @@
             </Grid>
             <Grid HorizontalAlignment="Center" Height="157" Margin="0,97,0,0" VerticalAlignment="Top" x:Name="buttongrid2" Width="238">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -72,6 +90,54 @@
                     </Button.Background>
                 </Button>
                 <Button Grid.Row="3" Content="Star wars" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_SW">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="4" Content="Back"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_BackToChoosing">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Grid HorizontalAlignment="Center" Height="157" Margin="0,97,0,0" VerticalAlignment="Top" x:Name="buttongrid3" Width="258">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Choose a game mode!" Foreground="White" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="DigifaceWide" Grid.Row="0" Background="#FF0C1534"/>
+                <Button Grid.Row="1" Content="Palythrough" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_3">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="2" Content="Fun mode"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="3" Content="Rules"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_4">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="4" Content="Back"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_BackToMenu">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/menu/button1.jpg"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Grid HorizontalAlignment="Center" Margin="0,97,0,0" VerticalAlignment="Top" x:Name="buttongrid4" Width="430">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Nikoban rules" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="DigifaceWide" Grid.Row="0" Background="#FF0C1534"/>
+                <TextBlock Text="The main goal is to move the boxes to the targets, but watch out, because the boxes can get stuck and you lose HP. Every time you play, you have 5 HP at the start, if you lose it all: GAME OVER! Also you can choose between two modes: fun mode or playthrough. In playthrough you can reach a score which appears on the scoreboard after the game. In fun mode you can play random levels with random textures." Foreground="White" FontSize="16" TextWrapping="Wrap" FontFamily="Candara Light" Grid.Row="1" Background="#FF0C1534"/>
+                <Button Content="Back"  VerticalAlignment="Bottom" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="102" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_2">
                     <Button.Background>
                         <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>

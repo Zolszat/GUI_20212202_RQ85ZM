@@ -23,6 +23,9 @@ namespace Nikoban
         {
             InitializeComponent();
             buttongrid2.Visibility = Visibility.Hidden;
+            buttongrid3.Visibility = Visibility.Hidden;
+            buttongrid4.Visibility = Visibility.Hidden;
+            credit.Visibility = Visibility.Hidden;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,7 +36,7 @@ namespace Nikoban
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             buttongrid.Visibility = Visibility.Hidden;
-            buttongrid2.Visibility = Visibility.Visible;
+            buttongrid3.Visibility = Visibility.Visible;
         }
 
         private void Button_Click_P(object sender, RoutedEventArgs e)
@@ -67,6 +70,47 @@ namespace Nikoban
             buttongrid.Visibility = Visibility.Visible;
             buttongrid2.Visibility = Visibility.Hidden;
             this.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            buttongrid4.Visibility = Visibility.Hidden;
+            buttongrid3.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            buttongrid3.Visibility = Visibility.Hidden;
+            buttongrid2.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            buttongrid3.Visibility = Visibility.Hidden;
+            buttongrid4.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_CreditBack(object sender, RoutedEventArgs e)
+        {
+            credit.Visibility = Visibility.Hidden;
+            buttongrid.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_Credits(object sender, RoutedEventArgs e)
+        {
+            credit.Visibility = Visibility.Visible;
+            buttongrid.Visibility = Visibility.Hidden;
+        }
+
+        private void Button_Click_BackToMenu(object sender, RoutedEventArgs e)
+        {
+            buttongrid3.Visibility = Visibility.Hidden;
+            buttongrid.Visibility = Visibility.Visible;
+        }
+        private void Button_Click_BackToChoosing(object sender, RoutedEventArgs e)
+        {
+            buttongrid2.Visibility = Visibility.Hidden;
+            buttongrid3.Visibility = Visibility.Visible;
         }
     }
 }
