@@ -76,250 +76,88 @@ namespace Nikoban.Logic
             int y = position[1];
             int old_x = x;
             int old_y = y;
+            int future_x = x;
+            int future_y = y;
             bool box_stuck = false;
             switch (direction)
             {
                 case Direction.up:
-                    if(y-1>=0)
+                    if (y - 1 >= 0)
                     {
                         y--;
+                        future_y -= 2;
                     }
                     break;
                 case Direction.down:
-                    if(y+1<Map.GetLength(0))
+                    if (y + 1 < Map.GetLength(0))
                     {
                         y++;
+                        future_y += 2;
                     }
                     break;
                 case Direction.left:
-                    if(x-1>=0)
+                    if (x - 1 >= 0)
                     {
                         x--;
+                        future_x -= 2;
                     }
                     break;
                 case Direction.right:
-                    if(x+1<Map.GetLength(1))
+                    if (x + 1 < Map.GetLength(1))
                     {
                         x++;
+                        future_x += 2;
                     }
                     break;
                 default:
                     break;
             }
-            if (TargetCheckMap[old_x, old_y] == true) // ha target mezőről lépünk el
+            if (((Map[x,y]==GameItem.box || Map[x,y]==GameItem.box_on_target) && (Map[future_x,future_y]!=GameItem.wall && Map[future_x, future_y] != GameItem.box && Map[future_x, future_y] != GameItem.box_on_target))
+                || ((Map[x,y] == GameItem.floor) || (Map[x, y] == GameItem.target))) //lehet tolni
             {
-                if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) 
-                    && direction.Equals(Direction.up) && (Map[x, y - 1] == GameItem.floor 
-                    || Map[x, y - 1] == GameItem.target)) // dobozt tolunk fel és nincs mögötte fal
-                {
-                    Map[old_x, old_y] = GameItem.target;
-                    Map[x, y] = GameItem.player;
-                    Map[x, y - 1] = GameItem.box;
-                    if(gameMode == GameMode.playthrough)
-                    {
-                        score--;
-                    }
-                    if(BoxStuck(x,y-1))
-                    {
-                        box_stuck = true;
-                    }
-                }
-                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) &&
-                    direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor 
-                    || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
-                {
-                    Map[old_x, old_y] = GameItem.target;
-                    Map[x, y] = GameItem.player;
-                    Map[x, y + 1] = GameItem.box;
-                    if (gameMode == GameMode.playthrough)
-                    {
-                        score--;
-                    }
-                    if (BoxStuck(x, y + 1))
-                    {
-                        box_stuck = true;
-                    }
-                }
-                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) 
-                    && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor 
-                    || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
-                {
-                    Map[old_x, old_y] = GameItem.target;
-                    Map[x, y] = GameItem.player;
-                    Map[x - 1, y] = GameItem.box;
-                    if (gameMode == GameMode.playthrough)
-                    {
-                        score--;
-                    }
-                    if (BoxStuck(x-1, y))
-                    {
-                        box_stuck = true;
-                    }
-                }
-                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) 
-                    && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor 
-                    || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
-                {
-                    Map[old_x, old_y] = GameItem.target;
-                    Map[x, y] = GameItem.player;
-                    Map[x + 1, y] = GameItem.box;
-                    if (gameMode == GameMode.playthrough)
-                    {
-                        score--;
-                    }
-                    if (BoxStuck(x+1, y))
-                    {
-                        box_stuck = true;
-                    }
-                }
-                else if (Map[x, y] == GameItem.floor || Map[x, y] == GameItem.target) // üres mezőre lépünk
-                {
-                    Map[old_x, old_y] = GameItem.target;
-                    Map[x, y] = GameItem.player;
-                }
-                else if (Map[x, y] == GameItem.player_on_target || Map[x, y] == GameItem.floor) // üres mezőre lépünk
-                {
-                    Map[old_x, old_y] = GameItem.target;
-                    Map[x, y] = GameItem.player;
-                }
-            }
-            else // ha nem target mezőről lépünk el
-            {
-                if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) 
-                    && direction.Equals(Direction.up) && (Map[x, y - 1] == GameItem.floor 
-                    || Map[x, y - 1] == GameItem.target)) // dobozt tolunk fel és nincs mögötte fal
-                {
-                    if (Map[x, y] == GameItem.box_on_target)
-                    {
-                        Map[old_x, old_y] = GameItem.floor;
-                        Map[x, y] = GameItem.player_on_target;
-                        Map[x, y - 1] = GameItem.box;
-
-                        if (gameMode == GameMode.playthrough)
-                        {
-                            score--;
-                        }
-                    }
-                    else
-                    {
-                        Map[old_x, old_y] = GameItem.floor;
-                        Map[x, y] = GameItem.player;
-                        Map[x, y - 1] = GameItem.box;
-                        if (gameMode == GameMode.playthrough)
-                        {
-                            score--;
-                        }
-                    }
-                    if (BoxStuck(x, y - 1))
-                    {
-                        box_stuck = true;
-                    }
-                }
-                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) 
-                    && direction.Equals(Direction.down) && (Map[x, y + 1] == GameItem.floor 
-                    || Map[x, y + 1] == GameItem.target)) // dobozt tolunk le és nincs mögötte fal
-                {
-                    if (Map[x, y] == GameItem.box_on_target)
-                    {
-                        Map[old_x, old_y] = GameItem.floor;
-                        Map[x, y] = GameItem.player_on_target;
-                        Map[x, y + 1] = GameItem.box;
-                        if (gameMode == GameMode.playthrough)
-                        {
-                            score--;
-                        }
-                    }
-                    else
-                    {
-                        Map[old_x, old_y] = GameItem.floor;
-                        Map[x, y] = GameItem.player;
-                        Map[x, y + 1] = GameItem.box;
-                        if (gameMode == GameMode.playthrough)
-                        {
-                            score--;
-                        }
-                    }
-                    if (BoxStuck(x, y + 1))
-                    {
-                        box_stuck = true;
-                    }
-                }
-                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) 
-                    && direction.Equals(Direction.left) && (Map[x - 1, y] == GameItem.floor 
-                    || Map[x - 1, y] == GameItem.target)) // dobozt tolunk balra és nincs mögötte fal
-                {
-                    if (Map[x, y] == GameItem.box_on_target)
-                    {
-                        Map[old_x, old_y] = GameItem.floor;
-                        Map[x, y] = GameItem.player_on_target;
-                        Map[x - 1, y] = GameItem.box;
-                        if (gameMode == GameMode.playthrough)
-                        {
-                            score--;
-                        }
-                    }
-                    else
-                    {
-                        Map[old_x, old_y] = GameItem.floor;
-                        Map[x, y] = GameItem.player;
-                        Map[x - 1, y] = GameItem.box;
-                        if (gameMode == GameMode.playthrough)
-                        {
-                            score--;
-                        }
-                    }
-                    if (BoxStuck(x - 1, y))
-                    {
-                        box_stuck = true;
-                    }
-                }
-                else if ((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) 
-                    && direction.Equals(Direction.right) && (Map[x + 1, y] == GameItem.floor 
-                    || Map[x + 1, y] == GameItem.target)) // dobozt tolunk jobbra és nincs mögötte fal
-                {
-                    if(Map[x, y] == GameItem.box_on_target)
-                    {
-                        Map[old_x, old_y] = GameItem.floor;
-                        Map[x, y] = GameItem.player_on_target;
-                        Map[x + 1, y] = GameItem.box;
-                        if (gameMode == GameMode.playthrough)
-                        {
-                            score--;
-                        }
-                    }
-                    else
-                    {
-                        Map[old_x, old_y] = GameItem.floor;
-                        Map[x, y] = GameItem.player;
-                        Map[x + 1, y] = GameItem.box;
-                        if (gameMode == GameMode.playthrough)
-                        {
-                            score--;
-                        }
-                    }
-                    if (BoxStuck(x + 1, y))
-                    {
-                        box_stuck = true;
-                    }
-                }
-                else if (Map[x, y] == GameItem.floor) // üres mezőre lépünk
+                if(Map[old_x,old_y] == GameItem.player)
                 {
                     Map[old_x, old_y] = GameItem.floor;
+                }
+                else
+                {
+                    Map[old_x, old_y] = GameItem.target;
+                }
+                if(Map[x,y]==GameItem.box)
+                {
                     Map[x, y] = GameItem.player;
-                    if (gameMode == GameMode.playthrough)
+                    if(Map[future_x,future_y]==GameItem.floor)
                     {
-                        score--;
+                        Map[future_x, future_y] = GameItem.box;
+                    }
+                    else
+                    {
+                        Map[future_x, future_y] = GameItem.box_on_target;
                     }
                 }
-                else if (Map[x, y] == GameItem.target || Map[x, y] == GameItem.box_on_target 
-                    && EmptySpace(Map[x+x-old_x,y+y-old_y]) ) // targetre lépünk
+                else if(Map[x,y] == GameItem.box_on_target)
                 {
-                    Map[old_x, old_y] = GameItem.floor;
                     Map[x, y] = GameItem.player_on_target;
-                    if (gameMode == GameMode.playthrough)
+                    if (Map[future_x, future_y] == GameItem.floor)
                     {
-                        score--;
+                        Map[future_x, future_y] = GameItem.box;
                     }
+                    else
+                    {
+                        Map[future_x, future_y] = GameItem.box_on_target;
+                    }
+                }
+                else if(Map[x, y]==GameItem.floor)
+                {
+                    Map[x, y] = GameItem.player;
+                }
+                else if(Map[x,y]==GameItem.target)
+                {
+                    Map[x, y] = GameItem.player_on_target;
+                }
+                if((Map[future_x,future_y]==GameItem.box || Map[future_x, future_y] == GameItem.box) && BoxStuck(future_x,future_y))
+                {
+                    box_stuck = true;
                 }
             }
             if(box_stuck)
@@ -474,7 +312,7 @@ namespace Nikoban.Logic
             {
                 for (int j = 0; j < Map.GetLength(1) && done; j++)
                 {
-                    if(Map[i,j]!=GameItem.box && TargetCheckMap[i,j]) // target alapból, de nincs rajta doboz
+                    if(Map[i,j]==GameItem.box) // van box enum, tehát nincs minden doboz a helyén
                     {
                         done = false;
                     }
