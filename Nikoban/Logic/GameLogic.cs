@@ -309,6 +309,8 @@ namespace Nikoban.Logic
         }
 
         private int score; // játékos pontszáma (PBA-LSZ-EIM-BP lásd specifikáció/pontozás)
+
+        public int Score { get { return score; } }
         private int[] CurrentPosition()
         {
             for (int i = 0; i < Map.GetLength(0); i++)
