@@ -5,22 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Nikoban.Logic
 {
+    public enum GameMode
+    {
+        funmode, playthrough
+    }
+
     public class GameLogic : IGameModel, IGameControl
     {
         public enum GameItem
         {
             player, wall, floor, box, target, box_on_target, player_on_target // lehetséges elemek a pályán
         }
-        public enum GameMode
-        {
-            funmode, playthrough
-        }
+
         public enum Direction
         {
-            up, down, left, right
+            up, down, left, right, escape
         }
         private Random r;
         int funIndex;
@@ -28,13 +31,17 @@ namespace Nikoban.Logic
         public GameMode gameMode { get; set; }
         public bool[,] TargetCheckMap { get; set; }
         public int Life { get; set; }
-        public bool ShouldICloseTheWindow { get; set; }
+
         private List<string> levels;
         int levelIndex = 0;
         public GameLogic()
         {
+
+        }
+        public GameLogic(GameMode gm)
+        {
+            this.gameMode = gm;
             r = new Random();
-            gameMode = GameMode.funmode;
             score = 0;
             Life = 5;
             levels = new List<string>();
@@ -42,9 +49,15 @@ namespace Nikoban.Logic
             {
                 levels.Add(item);
             }
-            LoadMap(levels[levelIndex]);
-
             funIndex = r.Next(0, levels.Count - 1);
+            if(gameMode == GameMode.funmode)
+            {
+                LoadMap(levels[funIndex]);
+            }
+            else
+            {
+                LoadMap(levels[levelIndex]);
+            }
         }
         private void LoadMap(string path)
         {
@@ -79,6 +92,7 @@ namespace Nikoban.Logic
             int future_x = x;
             int future_y = y;
             bool box_stuck = false;
+
             switch (direction)
             {
                 case Direction.up:
@@ -107,6 +121,32 @@ namespace Nikoban.Logic
                     {
                         x++;
                         future_x += 2;
+                    }
+                    break;
+                case Direction.escape:
+                    if (MessageBox.Show("Do you want to quit?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        foreach (var item in Application.Current.Windows)
+                        {
+                            if (item is LevelWindow)
+                            {
+                                (item as Window).Close();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if(MessageBox.Show("Do you want to reload the game?","", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            if(gameMode == GameMode.playthrough)
+                            {
+                                LoadMap(levels[levelIndex]);
+                            }
+                            else
+                            {
+                                LoadMap(levels[funIndex]);
+                            }
+                        }
                     }
                     break;
                 default:
@@ -163,17 +203,30 @@ namespace Nikoban.Logic
             if(box_stuck)
             {
                 if(Life > 1)
-                {
-                    Life--;
-                    MessageBox.Show($"The box stucked. You have {Life} life left.");
+                {                  
                     if (gameMode == GameMode.playthrough)
                     {
+                        Life--;
+                        MessageBox.Show($"The box stucked. You have {Life} life left.");
                         score--;
                         LoadMap(levels[levelIndex]);
                     }
                     else
                     {
-                        LoadMap(levels[funIndex]);
+                        if (MessageBox.Show("Do you want to play it again?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            LoadMap(levels[funIndex]);
+                        }
+                        else
+                        {
+                            foreach (var item in Application.Current.Windows)
+                            {
+                                if (item is LevelWindow)
+                                {
+                                    (item as Window).Close();
+                                }
+                            }
+                        }
                     }
                 }
                 else
@@ -305,7 +358,7 @@ namespace Nikoban.Logic
             }
         }
 
-        private bool MapDone()
+        public bool MapDone()
         {
             bool done = true;
             for (int i = 0; i < Map.GetLength(0); i++)

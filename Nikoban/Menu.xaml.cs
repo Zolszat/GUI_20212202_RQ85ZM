@@ -41,7 +41,7 @@ namespace Nikoban
 
         private void Button_Click_P(object sender, RoutedEventArgs e)
         {
-            LevelWindow lvl = new LevelWindow();
+            LevelWindow lvl = new LevelWindow(Logic.GameMode.playthrough);
             lvl.display.Selected_texture = Renderer.SelectedTexture.pirate;
             this.Hide();
             lvl.ShowDialog();
@@ -52,7 +52,7 @@ namespace Nikoban
 
         private void Button_Click_S(object sender, RoutedEventArgs e)
         {
-            LevelWindow lvl = new LevelWindow();
+            LevelWindow lvl = new LevelWindow(Logic.GameMode.playthrough);
             lvl.display.Selected_texture = Renderer.SelectedTexture.shrek;
             this.Hide();
             lvl.ShowDialog();
@@ -63,7 +63,7 @@ namespace Nikoban
 
         private void Button_Click_SW(object sender, RoutedEventArgs e)
         {
-            LevelWindow lvl = new LevelWindow();
+            LevelWindow lvl = new LevelWindow(Logic.GameMode.playthrough);
             lvl.display.Selected_texture = Renderer.SelectedTexture.star_wars;
             this.Hide();
             lvl.ShowDialog();
@@ -111,6 +111,30 @@ namespace Nikoban
         {
             buttongrid2.Visibility = Visibility.Hidden;
             buttongrid3.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_FunMode(object sender, RoutedEventArgs e)
+        {
+            LevelWindow lvl = new LevelWindow(Logic.GameMode.funmode);
+            Random r = new Random();
+            int x = r.Next(1, 4);
+            if(x == 1)
+            {
+                lvl.display.Selected_texture = Renderer.SelectedTexture.star_wars;
+            }
+            else if(x == 2)
+            {
+                lvl.display.Selected_texture = Renderer.SelectedTexture.pirate;
+            }
+            else
+            {
+                lvl.display.Selected_texture = Renderer.SelectedTexture.shrek;
+            }
+            this.Hide();
+            lvl.ShowDialog();
+            buttongrid.Visibility = Visibility.Visible;
+            buttongrid2.Visibility = Visibility.Hidden;
+            this.Show();
         }
     }
 }

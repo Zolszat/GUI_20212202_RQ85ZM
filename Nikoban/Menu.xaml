@@ -114,7 +114,7 @@
                         <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>
                 </Button>
-                <Button Grid.Row="2" Content="Fun mode"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
+                <Button Grid.Row="2" Content="Fun mode"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_FunMode">
                     <Button.Background>
                         <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>
@@ -136,7 +136,7 @@
                     <RowDefinition Height="9*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Nikoban rules" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="DigifaceWide" Grid.Row="0" Background="#FF0C1534"/>
-                <TextBlock Text="The main goal is to move the boxes to the targets, but watch out, because the boxes can get stuck and you lose HP. Every time you play, you have 5 HP at the start, if you lose it all: GAME OVER! Also you can choose between two modes: fun mode or playthrough. In playthrough you can reach a score which appears on the scoreboard after the game. In fun mode you can play random levels with random textures." Foreground="White" FontSize="16" TextWrapping="Wrap" FontFamily="Candara Light" Grid.Row="1" Background="#FF0C1534"/>
+                <TextBlock Text="The main goal is to move the boxes to the targets, but watch out, because the boxes can get stuck and you lose HP. Every time you play, you have 5 HP at the start, if you lose it all: GAME OVER! Also you can choose between two modes: fun mode or playthrough. In playthrough you can reach a score which appears on the scoreboard after the game. In fun mode you can play random levels with random textures and you can't lose HP." Foreground="White" FontSize="16" TextWrapping="Wrap" FontFamily="Candara Light" Grid.Row="1" Background="#FF0C1534"/>
                 <Button Content="Back"  VerticalAlignment="Bottom" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="102" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="Button_Click_2">
                     <Button.Background>
                         <ImageBrush ImageSource="Images/menu/button1.jpg"/>

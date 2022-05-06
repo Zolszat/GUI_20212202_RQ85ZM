@@ -31,6 +31,9 @@ namespace Nikoban
                 case Key.Right:
                     control.Move(GameLogic.Direction.down);
                     break;
+                case Key.Escape:
+                    control.Move(GameLogic.Direction.escape);
+                    break;
             }
         }
     }

@@ -23,14 +23,13 @@ namespace Nikoban
     {
         GameController controller;
         GameLogic logic;
-        public LevelWindow()
+        public LevelWindow(GameMode gm)
         {
             InitializeComponent();
-            logic = new GameLogic();
+            logic = new GameLogic(gm);
             display.SetupModel(logic);
             controller = new GameController(logic);
         }
-
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));

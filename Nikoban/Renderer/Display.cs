@@ -26,12 +26,12 @@ namespace Nikoban.Renderer
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
-            if(model != null && size.Width>0 && size.Height>0)
+            if (model != null && size.Width > 0 && size.Height > 0)
             {
                 double tileHeight = size.Height / model.Map.GetLength(0);
                 double tileWidth = size.Width / model.Map.GetLength(1);
                 ImageBrush brush = new ImageBrush();
-                if(Selected_texture == SelectedTexture.pirate)
+                if (Selected_texture == SelectedTexture.pirate)
                 {
                     for (int i = 0; i < model.Map.GetLength(0); i++)
                     {
@@ -67,7 +67,7 @@ namespace Nikoban.Renderer
                         }
                     }
                 }
-                else if(Selected_texture == SelectedTexture.shrek)
+                else if (Selected_texture == SelectedTexture.shrek)
                 {
                     for (int i = 0; i < model.Map.GetLength(0); i++)
                     {
