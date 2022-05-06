@@ -15,6 +15,7 @@
     <None Remove="Images\menu\button1.jpg" />
     <None Remove="Images\menu\button2.png" />
     <None Remove="Images\menu\menu.png" />
+    <None Remove="Images\pirate_template\box_on_target_p.jpg" />
     <None Remove="Images\pirate_template\box_p.jpg" />
     <None Remove="Images\pirate_template\character_p.jpg" />
     <None Remove="Images\pirate_template\finish_p.jpg" />
@@ -22,6 +23,7 @@
     <None Remove="Images\pirate_template\floor_water_p.jpg" />
     <None Remove="Images\pirate_template\player_finish_p.jpg" />
     <None Remove="Images\pirate_template\wall_p.jpg" />
+    <None Remove="Images\shrek_template\box_on_target_s.jpg" />
     <None Remove="Images\shrek_template\box_s.jpg" />
     <None Remove="Images\shrek_template\character_s.jpg" />
     <None Remove="Images\shrek_template\finish_s.jpg" />
@@ -29,6 +31,7 @@
     <None Remove="Images\shrek_template\floor_water_s.jpg" />
     <None Remove="Images\shrek_template\player_finish_s.jpg" />
     <None Remove="Images\shrek_template\wall_s.jpg" />
+    <None Remove="Images\star_wars_template\box_on_target_sw.jpg" />
     <None Remove="Images\star_wars_template\box_sw.jpg" />
     <None Remove="Images\star_wars_template\character_sw.jpg" />
     <None Remove="Images\star_wars_template\finish_sw.jpg" />
@@ -83,6 +86,9 @@
     <Content Include="Images\menu\menu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\pirate_template\box_on_target_p.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\pirate_template\box_p.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -104,6 +110,9 @@
     <Content Include="Images\pirate_template\wall_p.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\shrek_template\box_on_target_s.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\shrek_template\box_s.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -123,6 +132,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\shrek_template\wall_s.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\star_wars_template\box_on_target_sw.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\star_wars_template\box_sw.jpg">
