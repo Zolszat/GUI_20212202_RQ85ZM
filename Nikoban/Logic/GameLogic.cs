@@ -288,7 +288,6 @@ namespace Nikoban.Logic
                         }
                     }
                 }
-                
             }
         }
 
