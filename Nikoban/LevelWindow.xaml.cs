@@ -50,7 +50,7 @@ namespace Nikoban
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            ScoreWindow sw = new ScoreWindow();
+            ScoreWindow sw = new ScoreWindow(logic.Score);
             sw.ShowDialog();
         }
     }
