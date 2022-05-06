@@ -28,14 +28,7 @@ namespace Nikoban
             Scores.Add(newScore.ToString());
             Scores = Scores.OrderByDescending(x => int.Parse(x)).ToList();
             File.AppendText(newScore.ToString());
-
-            foreach (var item in Scores)
-            {
-                sp_scores.Items.Add(item);
-            }
-
-
-
+            sp_scores.Content = newScore.ToString();
         }
     }
 }

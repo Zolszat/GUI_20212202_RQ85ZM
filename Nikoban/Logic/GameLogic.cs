@@ -42,7 +42,7 @@ namespace Nikoban.Logic
         {
             this.gameMode = gm;
             r = new Random();
-            score = 0;
+            score = 100;
             Life = 5;
             levels = new List<string>();
             foreach(var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(),"Levels")))
@@ -61,7 +61,6 @@ namespace Nikoban.Logic
         }
         private void LoadMap(string path)
         {
-            score += 100;
             string[] lines = File.ReadAllLines(path);
             Map = new GameItem[int.Parse(lines[0]), int.Parse(lines[1])];
             TargetCheckMap = new bool[int.Parse(lines[0]), int.Parse(lines[1])];
@@ -203,7 +202,7 @@ namespace Nikoban.Logic
             if(box_stuck)
             {
                 if(Life > 1)
-                {                  
+                {
                     if (gameMode == GameMode.playthrough)
                     {
                         Life--;
@@ -256,6 +255,7 @@ namespace Nikoban.Logic
                 {
                     MessageBox.Show($"{score}");
                     levelIndex++;
+                    score += 100;
                     LoadMap(levels[levelIndex]);
                 }
                 else if(levelIndex > levels.Count && gameMode == GameMode.playthrough)
@@ -401,7 +401,5 @@ namespace Nikoban.Logic
             }
             return false;
         }
-
-
     }
 }

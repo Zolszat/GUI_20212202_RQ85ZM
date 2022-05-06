@@ -22,6 +22,8 @@ namespace Nikoban
         public Menu()
         {
             InitializeComponent();
+            jojo.Source = new Uri(@"Audio/jojo.mp3", UriKind.RelativeOrAbsolute);
+            jojo.Play();
             buttongrid2.Visibility = Visibility.Hidden;
             buttongrid3.Visibility = Visibility.Hidden;
             buttongrid4.Visibility = Visibility.Hidden;
@@ -41,35 +43,50 @@ namespace Nikoban
 
         private void Button_Click_P(object sender, RoutedEventArgs e)
         {
+            jojo.Pause();
             LevelWindow lvl = new LevelWindow(Logic.GameMode.playthrough);
             lvl.display.Selected_texture = Renderer.SelectedTexture.pirate;
+            mediaElement1.Source = new Uri(@"Audio/pirate.mp3",UriKind.RelativeOrAbsolute);
+            mediaElement1.Play();
             this.Hide();
             lvl.ShowDialog();
             buttongrid.Visibility = Visibility.Visible;
             buttongrid2.Visibility = Visibility.Hidden;
+            mediaElement1.Stop();
             this.Show();
+            jojo.Play();
         }
 
         private void Button_Click_S(object sender, RoutedEventArgs e)
         {
+            jojo.Pause();
             LevelWindow lvl = new LevelWindow(Logic.GameMode.playthrough);
             lvl.display.Selected_texture = Renderer.SelectedTexture.shrek;
+            mediaElement1.Source = new Uri(@"Audio/shrek.mp3", UriKind.RelativeOrAbsolute);
+            mediaElement1.Play();
             this.Hide();
             lvl.ShowDialog();
             buttongrid.Visibility = Visibility.Visible;
             buttongrid2.Visibility = Visibility.Hidden;
+            mediaElement1.Stop();
             this.Show();
+            jojo.Play();
         }
 
         private void Button_Click_SW(object sender, RoutedEventArgs e)
         {
+            jojo.Pause();
             LevelWindow lvl = new LevelWindow(Logic.GameMode.playthrough);
-            lvl.display.Selected_texture = Renderer.SelectedTexture.star_wars;
+            lvl.display.Selected_texture = Renderer.SelectedTexture.star_wars; 
+            mediaElement1.Source = new Uri(@"Audio/star_wars.mp3", UriKind.RelativeOrAbsolute);
+            mediaElement1.Play();
             this.Hide();
             lvl.ShowDialog();
             buttongrid.Visibility = Visibility.Visible;
             buttongrid2.Visibility = Visibility.Hidden;
+            mediaElement1.Stop();
             this.Show();
+            jojo.Play();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -115,26 +132,35 @@ namespace Nikoban
 
         private void Button_Click_FunMode(object sender, RoutedEventArgs e)
         {
+            jojo.Pause();
             LevelWindow lvl = new LevelWindow(Logic.GameMode.funmode);
             Random r = new Random();
             int x = r.Next(1, 4);
             if(x == 1)
             {
-                lvl.display.Selected_texture = Renderer.SelectedTexture.star_wars;
+                lvl.display.Selected_texture = Renderer.SelectedTexture.star_wars; 
+                mediaElement1.Source = new Uri(@"Audio/star_wars.mp3", UriKind.RelativeOrAbsolute);
+                mediaElement1.Play();
             }
             else if(x == 2)
             {
                 lvl.display.Selected_texture = Renderer.SelectedTexture.pirate;
+                mediaElement1.Source = new Uri(@"Audio/pirate.mp3", UriKind.RelativeOrAbsolute);
+                mediaElement1.Play();
             }
             else
             {
                 lvl.display.Selected_texture = Renderer.SelectedTexture.shrek;
+                mediaElement1.Source = new Uri(@"Audio/shrek.mp3", UriKind.RelativeOrAbsolute);
+                mediaElement1.Play();
             }
             this.Hide();
             lvl.ShowDialog();
             buttongrid.Visibility = Visibility.Visible;
             buttongrid2.Visibility = Visibility.Hidden;
+            mediaElement1.Stop();
             this.Show();
+            jojo.Play();
         }
     }
 }

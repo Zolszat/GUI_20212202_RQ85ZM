@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="Menu" Height="450" Width="800">
     <Grid>
-
+        <MediaElement LoadedBehavior="Manual" Name="mediaElement1" VerticalAlignment="Top" Visibility="Hidden"/>
+        <MediaElement LoadedBehavior="Manual" Name="jojo" VerticalAlignment="Top" Visibility="Hidden"/>
         <Grid Margin="103,44,110,121" RenderTransformOrigin="0.421,0.635">
             <Grid.Background>
                 <RadialGradientBrush>

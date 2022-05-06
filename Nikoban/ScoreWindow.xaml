@@ -7,32 +7,27 @@
         xmlns:l="clr-namespace:Nikoban.Logic"
         mc:Ignorable="d"
         Title="ScoreWindow" Height="352" Width="347">
-    <Grid>
+    <Grid Background="#FF0C1534">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <!--<Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF2FA9BA"/>
-                <GradientStop Color="#FF16FFC8" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>-->
 
-        <Label Grid.Row="0" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Your score is:"  Background="#FF2FA9BA"></Label>
-        <!--<Label FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content=""  Background="{x:Null}"></Label>-->
-        
+        <Label Grid.Row="0" FontSize="18" VerticalContentAlignment="Center" Foreground="White" HorizontalContentAlignment="Center" Content="Your score is:"  Background="#FF0C1534" FontFamily="DigifaceWide"></Label>
+        <Label x:Name="sp_scores" Foreground="White" FontFamily="DigifaceWide" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.08"/>
+            </Label.Background>
+        </Label>
+        <Label FontSize="18" VerticalContentAlignment="Center" Foreground="White" FontFamily="DigifaceWide" HorizontalContentAlignment="Center" Grid.Row="2" Content="Enter your name"  Background="{x:Null}"></Label>
         <!--<TextBox Text="" Margin="0,197,0,97" >
             <TextBox.Background>
                 <SolidColorBrush Color="White" Opacity="0.6"/>
             </TextBox.Background>
         </TextBox>-->
 
-        <ListBox x:Name="sp_scores" Grid.Row="1">
 
-            
-        </ListBox>
-        
-        
     </Grid>
 </Window>

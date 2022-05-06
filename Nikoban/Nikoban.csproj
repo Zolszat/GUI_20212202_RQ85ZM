@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Audio\jojo.mp3" />
+    <None Remove="Audio\pirate.mp3" />
+    <None Remove="Audio\shrek.mp3" />
+    <None Remove="Audio\star_wars.mp3" />
     <None Remove="Images\menu\animated.gif" />
     <None Remove="Images\menu\button1.jpg" />
     <None Remove="Images\menu\button2.png" />
@@ -55,6 +59,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Audio\jojo.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audio\pirate.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audio\shrek.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audio\star_wars.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\menu\animated.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

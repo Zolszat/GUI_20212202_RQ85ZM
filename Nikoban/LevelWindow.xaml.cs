@@ -49,8 +49,11 @@ namespace Nikoban
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            ScoreWindow sw = new ScoreWindow(logic.Score);
-            sw.ShowDialog();
+            if(logic.gameMode == GameMode.playthrough)
+            {
+                ScoreWindow sw = new ScoreWindow(logic.Score);
+                sw.ShowDialog();
+            }
         }
     }
 }
