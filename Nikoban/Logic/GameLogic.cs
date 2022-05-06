@@ -102,7 +102,7 @@ namespace Nikoban.Logic
                     }
                     break;
                 case Direction.down:
-                    if (y + 1 < Map.GetLength(0))
+                    if (y + 1 <= Map.GetLength(0))
                     {
                         y++;
                         future_y += 2;
@@ -116,7 +116,7 @@ namespace Nikoban.Logic
                     }
                     break;
                 case Direction.right:
-                    if (x + 1 < Map.GetLength(1))
+                    if (x + 1 <= Map.GetLength(1))
                     {
                         x++;
                         future_x += 2;
