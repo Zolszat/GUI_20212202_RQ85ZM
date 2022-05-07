@@ -162,5 +162,11 @@ namespace Nikoban
             this.Show();
             jojo.Play();
         }
+
+        private void bt_scores(object sender, RoutedEventArgs e)
+        {
+            ScoreBoardWindow scoreBoardWindow = new ScoreBoardWindow();
+            scoreBoardWindow.ShowDialog();
+        }
     }
 }
