@@ -20,15 +20,27 @@ namespace Nikoban
     /// </summary>
     public partial class ScoreWindow : Window
     {
+        int newScore;
+        StreamWriter sw;
+
         public ScoreWindow(int newScore)
         {
             InitializeComponent();
+            this.newScore = newScore;
 
             List<string> Scores = File.ReadAllLines(@"Scores\score.txt").ToList();
-            Scores.Add(newScore.ToString());
-            Scores = Scores.OrderByDescending(x => int.Parse(x)).ToList();
-            File.AppendText(newScore.ToString());
+            ;
             sp_scores.Content = newScore.ToString();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            sw = File.AppendText(@"Scores\score.txt");
+            sw.WriteLine($"{tb_name.Text} {newScore}");
+            sw.Close();
+
+            Close();
         }
     }
 }

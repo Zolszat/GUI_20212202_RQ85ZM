@@ -13,20 +13,23 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" FontSize="18" VerticalContentAlignment="Center" Foreground="White" HorizontalContentAlignment="Center" Content="Your score is:"  Background="#FF0C1534" FontFamily="DigifaceWide"></Label>
-        <Label x:Name="sp_scores" Foreground="White" FontFamily="DigifaceWide" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1">
+        <Label Grid.Row="0" FontSize="20" VerticalContentAlignment="Center" Foreground="White" HorizontalContentAlignment="Center" Content="Your score is:"  Background="#FF0C1534" FontFamily="DigifaceWide"></Label>
+        <Label x:Name="sp_scores" Foreground="White" FontFamily="DigifaceWide" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1">
             <Label.Background>
                 <SolidColorBrush Color="White" Opacity="0.08"/>
             </Label.Background>
         </Label>
-        <Label FontSize="18" VerticalContentAlignment="Center" Foreground="White" FontFamily="DigifaceWide" HorizontalContentAlignment="Center" Grid.Row="2" Content="Enter your name"  Background="{x:Null}"></Label>
-        <!--<TextBox Text="" Margin="0,197,0,97" >
+        <Label FontSize="20" VerticalContentAlignment="Center" Foreground="White" FontFamily="DigifaceWide" HorizontalContentAlignment="Center" Grid.Row="2" Content="Enter your name"  Background="{x:Null}"></Label>
+        <TextBox Grid.Row="3" Name="tb_name" ToolTip="Type here" FontFamily="DigifaceWide" Foreground="White" FontSize="20" TextAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <TextBox.Background>
-                <SolidColorBrush Color="White" Opacity="0.6"/>
+                <SolidColorBrush Color="White" Opacity="0"/>
             </TextBox.Background>
-        </TextBox>-->
+        </TextBox>
+
+        <Button Grid.Row="4" Content="Save" FontSize="25" FontFamily="DigifaceWide" Foreground="White" Background="{x:Null}" Click="Button_Click"/>
 
 
     </Grid>
