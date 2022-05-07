@@ -1,0 +1,24 @@
+﻿<Window x:Class="Nikoban.ScoreBoardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nikoban"
+        mc:Ignorable="d"
+        Title="ScoreBoardWindow" Height="500" Width="300">
+    <Grid Background="#FF0C1534">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" FontSize="20" VerticalContentAlignment="Center" Foreground="White" HorizontalContentAlignment="Center" Content="ScoreBoard"  Background="#FF0C1534" FontFamily="DigifaceWide"></Label>
+        <ListBox Grid.Row="1" Name="lb_Scores"  FontSize="20" VerticalContentAlignment="Center" Foreground="White" Background="#FF0C1534" FontFamily="DigifaceWide">
+
+            
+        </ListBox>
+
+
+    </Grid>
+</Window>
+

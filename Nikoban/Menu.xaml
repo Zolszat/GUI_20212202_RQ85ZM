@@ -43,7 +43,7 @@
                         <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>
                 </Button>
-                <Button Grid.Row="1" Content="Scores"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}">
+                <Button Grid.Row="1" Content="Scores"  VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" Width="176" RenderTransformOrigin="0.136,0.335" Foreground="White" FontFamily="DigifaceWide" FontSize="18" BorderBrush="{x:Null}" Click="bt_scores">
                     <Button.Background>
                         <ImageBrush ImageSource="Images/menu/button1.jpg"/>
                     </Button.Background>
