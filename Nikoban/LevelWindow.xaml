@@ -8,6 +8,16 @@
         mc:Ignorable="d"
         Title="LevelWindow" Height="450" Width="800" SizeChanged="Window_SizeChanged" Loaded="Window_Loaded" KeyDown="Window_KeyDown" Closed="Window_Closed">
     <Grid x:Name="grid">
-        <renderer:Display x:Name="display"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="179*"/>
+            <RowDefinition Height="38*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="177*"/>
+            <ColumnDefinition Width="623*"/>
+        </Grid.ColumnDefinitions>
+        <renderer:Display x:Name="display" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Image x:Name="hp_bar" Source="Images/hpbars/hpbar3.png" Stretch="Uniform" Grid.Column="0" Grid.Row="1"/>
     </Grid>
+
 </Window>

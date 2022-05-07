@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Nikoban.Logic
 {
@@ -33,7 +35,7 @@ namespace Nikoban.Logic
         public int Life { get; set; }
 
         private List<string> levels;
-        int levelIndex = 0;
+        int levelIndex;
         public GameLogic()
         {
 
@@ -42,15 +44,16 @@ namespace Nikoban.Logic
         {
             this.gameMode = gm;
             r = new Random();
-            score = 100;
-            Life = 5;
+            levelIndex = 0;
+            score = 0;
+            Life = 3;
             levels = new List<string>();
-            foreach(var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(),"Levels")))
+            foreach (var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels")))
             {
                 levels.Add(item);
             }
             funIndex = r.Next(0, levels.Count - 1);
-            if(gameMode == GameMode.funmode)
+            if (gameMode == GameMode.funmode)
             {
                 LoadMap(levels[funIndex]);
             }
@@ -68,7 +71,7 @@ namespace Nikoban.Logic
             {
                 for (int j = 0; j < Map.GetLength(1); j++)
                 {
-                    if (ConvertToGameItem(lines[i + 2][j]) == GameItem.target || ConvertToGameItem(lines[i + 2][j]) == GameItem.box_on_target 
+                    if (ConvertToGameItem(lines[i + 2][j]) == GameItem.target || ConvertToGameItem(lines[i + 2][j]) == GameItem.box_on_target
                         || ConvertToGameItem(lines[i + 2][j]) == GameItem.player_on_target)
                     {
                         TargetCheckMap[i, j] = true;
@@ -95,40 +98,32 @@ namespace Nikoban.Logic
             switch (direction)
             {
                 case Direction.up:
-                    if (y - 1 >= 0)
-                    {
-                        y--;
-                        future_y -= 2;
-                    }
+                    y--;
+                    future_y -= 2;
                     break;
                 case Direction.down:
-                    if (y + 1 <= Map.GetLength(0))
-                    {
-                        y++;
-                        future_y += 2;
-                    }
+
+                    y++;
+                    future_y += 2;
+
                     break;
                 case Direction.left:
-                    if (x - 1 >= 0)
-                    {
-                        x--;
-                        future_x -= 2;
-                    }
+
+                    x--;
+                    future_x -= 2;
+
                     break;
                 case Direction.right:
-                    if (x + 1 <= Map.GetLength(1))
-                    {
-                        x++;
-                        future_x += 2;
-                    }
+                    x++;
+                    future_x += 2;
                     break;
                 default:
                     break;
             }
-            if (((Map[x,y]==GameItem.box || Map[x,y]==GameItem.box_on_target) && (Map[future_x,future_y]!=GameItem.wall && Map[future_x, future_y] != GameItem.box && Map[future_x, future_y] != GameItem.box_on_target))
-                || ((Map[x,y] == GameItem.floor) || (Map[x, y] == GameItem.target))) //lehet tolni
+            if (((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && (Map[future_x, future_y] != GameItem.wall && Map[future_x, future_y] != GameItem.box && Map[future_x, future_y] != GameItem.box_on_target))
+                || ((Map[x, y] == GameItem.floor) || (Map[x, y] == GameItem.target))) //lehet tolni
             {
-                if(Map[old_x,old_y] == GameItem.player)
+                if (Map[old_x, old_y] == GameItem.player)
                 {
                     Map[old_x, old_y] = GameItem.floor;
                 }
@@ -136,10 +131,10 @@ namespace Nikoban.Logic
                 {
                     Map[old_x, old_y] = GameItem.target;
                 }
-                if(Map[x,y]==GameItem.box)
+                if (Map[x, y] == GameItem.box)
                 {
                     Map[x, y] = GameItem.player;
-                    if(Map[future_x,future_y]==GameItem.floor)
+                    if (Map[future_x, future_y] == GameItem.floor)
                     {
                         Map[future_x, future_y] = GameItem.box;
                     }
@@ -148,7 +143,7 @@ namespace Nikoban.Logic
                         Map[future_x, future_y] = GameItem.box_on_target;
                     }
                 }
-                else if(Map[x,y] == GameItem.box_on_target)
+                else if (Map[x, y] == GameItem.box_on_target)
                 {
                     Map[x, y] = GameItem.player_on_target;
                     if (Map[future_x, future_y] == GameItem.floor)
@@ -160,20 +155,20 @@ namespace Nikoban.Logic
                         Map[future_x, future_y] = GameItem.box_on_target;
                     }
                 }
-                else if(Map[x, y]==GameItem.floor)
+                else if (Map[x, y] == GameItem.floor)
                 {
                     Map[x, y] = GameItem.player;
                 }
-                else if(Map[x,y]==GameItem.target)
+                else if (Map[x, y] == GameItem.target)
                 {
                     Map[x, y] = GameItem.player_on_target;
                 }
-                if((Map[future_x,future_y]==GameItem.box || Map[future_x, future_y] == GameItem.box) && BoxStuck(future_x,future_y))
+                if ((Map[future_x, future_y] == GameItem.box || Map[future_x, future_y] == GameItem.box) && BoxStuck(future_x, future_y))
                 {
                     box_stuck = true;
                 }
             }
-            if(direction == Direction.escape)
+            if (direction == Direction.escape)
             {
                 if (MessageBox.Show("Do you want to quit?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
@@ -205,13 +200,27 @@ namespace Nikoban.Logic
                     }
                 }
             }
-            if(box_stuck)
+            if (box_stuck)
             {
-                if(Life > 1)
+                if (Life > 1)
                 {
                     if (gameMode == GameMode.playthrough)
                     {
                         Life--;
+                        foreach (var item in Application.Current.Windows)
+                        {
+                            if (item is LevelWindow)
+                            {
+                                if (Life == 2)
+                                {
+                                    (item as LevelWindow).hp_bar.Source = new BitmapImage(new Uri("Images/hpbars/hpbar2.png", UriKind.RelativeOrAbsolute));
+                                }
+                                else
+                                {
+                                    (item as LevelWindow).hp_bar.Source = new BitmapImage(new Uri("Images/hpbars/hpbar1.png", UriKind.RelativeOrAbsolute));
+                                }
+                            }
+                        }
                         MessageBox.Show($"The box stucked. You have {Life} life left.");
                         score--;
                         LoadMap(levels[levelIndex]);
@@ -238,6 +247,13 @@ namespace Nikoban.Logic
                 {
                     if (gameMode == GameMode.playthrough)
                     {
+                        foreach (var item in Application.Current.Windows)
+                        {
+                            if (item is LevelWindow)
+                            {
+                                (item as LevelWindow).hp_bar.Source = new BitmapImage(new Uri("Images/hpbars/hpbar0.png", UriKind.RelativeOrAbsolute));
+                            }
+                        }
                         MessageBox.Show($"Defeat! Your score is: {score}");
                     }
                     else
@@ -246,7 +262,7 @@ namespace Nikoban.Logic
                     }
                     foreach (var item in Application.Current.Windows)
                     {
-                        if(item is LevelWindow)
+                        if (item is LevelWindow)
                         {
                             (item as Window).Close();
                         }
@@ -254,7 +270,7 @@ namespace Nikoban.Logic
                     }
                 }
             }
-            if(MapDone())
+            if (MapDone())
             {
                 if (levelIndex <= levels.Count && gameMode == GameMode.playthrough)
                 {
@@ -263,7 +279,7 @@ namespace Nikoban.Logic
                     score += 100;
                     LoadMap(levels[levelIndex]);
                 }
-                else if(levelIndex > levels.Count && gameMode == GameMode.playthrough)
+                else if (levelIndex > levels.Count && gameMode == GameMode.playthrough)
                 {
                     MessageBox.Show($"Victory! Your score is: {score}");
                     foreach (var item in Application.Current.Windows)
@@ -276,7 +292,7 @@ namespace Nikoban.Logic
                 }
                 else
                 {
-                    if(MessageBox.Show("Do you want to play more?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    if (MessageBox.Show("Do you want to play more?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         funIndex = r.Next(1, levels.Count - 1);
                         LoadMap(levels[funIndex]);
@@ -304,7 +320,7 @@ namespace Nikoban.Logic
             {
                 for (int j = 0; j < Map.GetLength(1); j++)
                 {
-                    if(Map[i,j] == GameItem.player || Map[i,j] == GameItem.player_on_target)
+                    if (Map[i, j] == GameItem.player || Map[i, j] == GameItem.player_on_target)
                     {
                         return new int[] { i, j };
                     }
@@ -354,7 +370,7 @@ namespace Nikoban.Logic
             {
                 for (int j = 0; j < Map.GetLength(1) && done; j++)
                 {
-                    if(Map[i,j]==GameItem.box) // van box enum, tehát nincs minden doboz a helyén
+                    if (Map[i, j] == GameItem.box) // van box enum, tehát nincs minden doboz a helyén
                     {
                         done = false;
                     }
