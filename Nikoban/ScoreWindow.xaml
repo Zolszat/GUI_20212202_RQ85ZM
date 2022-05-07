@@ -19,13 +19,21 @@
         <Label Grid.Row="0" FontSize="20" VerticalContentAlignment="Center" Foreground="White" HorizontalContentAlignment="Center" Content="Your score is:"  Background="#FF0C1534" FontFamily="DigifaceWide"></Label>
         <Label x:Name="sp_scores" Foreground="White" FontFamily="DigifaceWide" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1">
             <Label.Background>
-                <SolidColorBrush Color="White" Opacity="0.08"/>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.2">
+                    <GradientStop Color="#FF0C1534"/>
+                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="#FF020835" Offset="0.353"/>
+                </LinearGradientBrush>
             </Label.Background>
         </Label>
         <Label FontSize="20" VerticalContentAlignment="Center" Foreground="White" FontFamily="DigifaceWide" HorizontalContentAlignment="Center" Grid.Row="2" Content="Enter your name"  Background="{x:Null}"></Label>
         <TextBox Grid.Row="3" Name="tb_name" ToolTip="Type here" FontFamily="DigifaceWide" Foreground="White" FontSize="20" TextAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <TextBox.Background>
-                <SolidColorBrush Color="White" Opacity="0"/>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.2">
+                    <GradientStop Color="#FF020835" Offset="0.362"/>
+                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="#FF020835" Offset="0"/>
+                </LinearGradientBrush>
             </TextBox.Background>
         </TextBox>
 

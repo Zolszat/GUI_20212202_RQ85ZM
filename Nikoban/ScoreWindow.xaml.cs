@@ -29,7 +29,6 @@ namespace Nikoban
             this.newScore = newScore;
 
             List<string> Scores = File.ReadAllLines(@"Scores\score.txt").ToList();
-            ;
             sp_scores.Content = newScore.ToString();
 
         }
