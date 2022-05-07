@@ -122,32 +122,6 @@ namespace Nikoban.Logic
                         future_x += 2;
                     }
                     break;
-                case Direction.escape:
-                    if (MessageBox.Show("Do you want to quit?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                    {
-                        foreach (var item in Application.Current.Windows)
-                        {
-                            if (item is LevelWindow)
-                            {
-                                (item as Window).Close();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if(MessageBox.Show("Do you want to reload the game?","", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                        {
-                            if(gameMode == GameMode.playthrough)
-                            {
-                                LoadMap(levels[levelIndex]);
-                            }
-                            else
-                            {
-                                LoadMap(levels[funIndex]);
-                            }
-                        }
-                    }
-                    break;
                 default:
                     break;
             }
@@ -199,6 +173,38 @@ namespace Nikoban.Logic
                     box_stuck = true;
                 }
             }
+            if(direction == Direction.escape)
+            {
+                if (MessageBox.Show("Do you want to quit?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    if (gameMode == GameMode.playthrough)
+                    {
+                        score -= 100;
+                    }
+                    foreach (var item in Application.Current.Windows)
+                    {
+                        if (item is LevelWindow)
+                        {
+                            (item as Window).Close();
+                        }
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("Do you want to reload the game?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        if (gameMode == GameMode.playthrough)
+                        {
+                            score--;
+                            LoadMap(levels[levelIndex]);
+                        }
+                        else
+                        {
+                            LoadMap(levels[funIndex]);
+                        }
+                    }
+                }
+            }
             if(box_stuck)
             {
                 if(Life > 1)
@@ -233,7 +239,6 @@ namespace Nikoban.Logic
                     if (gameMode == GameMode.playthrough)
                     {
                         MessageBox.Show($"Defeat! Your score is: {score}");
-                        WriteToText(score.ToString());
                     }
                     else
                     {
@@ -261,7 +266,6 @@ namespace Nikoban.Logic
                 else if(levelIndex > levels.Count && gameMode == GameMode.playthrough)
                 {
                     MessageBox.Show($"Victory! Your score is: {score}");
-                    WriteToText(score.ToString());
                     foreach (var item in Application.Current.Windows)
                     {
                         if (item is LevelWindow)
@@ -288,22 +292,6 @@ namespace Nikoban.Logic
                         }
                     }
                 }
-            }
-        }
-
-        private void WriteToText(string text)
-        {
-            string file = "score.txt";
-            if (!File.Exists(file))
-            {
-                StreamWriter sw = File.CreateText(file);
-                sw.WriteLine(text);
-
-            }
-            else
-            {
-                StreamWriter sw = File.AppendText(file);
-                sw.WriteLine(text);
             }
         }
 
