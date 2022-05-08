@@ -45,7 +45,7 @@ namespace Nikoban.Logic
             this.gameMode = gm;
             r = new Random();
             levelIndex = 0;
-            score = 100;
+            score = 0;
             Life = 3;
             levels = new List<string>();
             foreach (var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels")))
@@ -65,6 +65,7 @@ namespace Nikoban.Logic
         private void LoadMap(string path)
         {
             string[] lines = File.ReadAllLines(path);
+            score += 100;
             Map = new GameItem[int.Parse(lines[0]), int.Parse(lines[1])];
             TargetCheckMap = new bool[int.Parse(lines[0]), int.Parse(lines[1])];
             for (int i = 0; i < Map.GetLength(0); i++)
@@ -171,14 +172,10 @@ namespace Nikoban.Logic
             }
             if (direction == Direction.escape)
             {
-                ExitWindow window = new ExitWindow();
-                window.ShowDialog();
-                if(window.DialogResult==true)
+                ExitWindow exitwindow = new ExitWindow();
+                exitwindow.ShowDialog();
+                if(exitwindow.DialogResult==true)
                 {
-                    if (gameMode == GameMode.playthrough)
-                    {
-                        score -= 100;
-                    }
                     foreach (var item in Application.Current.Windows)
                     {
                         if (item is LevelWindow)
@@ -189,11 +186,13 @@ namespace Nikoban.Logic
                 }
                 else
                 {
-                    if (MessageBox.Show("Do you want to reload the game?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    ReloadWindow reloadwindow = new ReloadWindow();
+                    reloadwindow.ShowDialog();
+                    if (reloadwindow.DialogResult==true)
                     {
                         if (gameMode == GameMode.playthrough)
                         {
-                            score--;
+                            score-=110; //-10 pont az újrakezdésért, -100, mert újra betölti a pályát
                             LoadMap(levels[levelIndex]);
                         }
                         else
@@ -224,8 +223,9 @@ namespace Nikoban.Logic
                                 }
                             }
                         }
-                        StuckWindow window = new StuckWindow();
-                        window.ShowDialog();
+                        StuckWindow stuckwindow = new StuckWindow();
+                        stuckwindow.ShowDialog();
+                        score-= 100;
                         LoadMap(levels[levelIndex]);
                     }
                     else
@@ -257,7 +257,8 @@ namespace Nikoban.Logic
                                 (item as LevelWindow).hp_bar.Source = new BitmapImage(new Uri("Images/hpbars/hpbar0.png", UriKind.RelativeOrAbsolute));
                             }
                         }
-                        MessageBox.Show($"Defeat! Your score is: {score}");
+                        DefeatWindow defeatwindow = new DefeatWindow();
+                        defeatwindow.ShowDialog();
                     }
                     else
                     {
@@ -279,7 +280,6 @@ namespace Nikoban.Logic
                 {
                     MessageBox.Show($"{score}");
                     levelIndex++;
-                    score += 100;
                     LoadMap(levels[levelIndex]);
                 }
                 else if (levelIndex > levels.Count && gameMode == GameMode.playthrough)

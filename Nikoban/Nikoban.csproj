@@ -43,7 +43,9 @@
     <None Remove="Images\star_wars_template\floor_sw.jpg" />
     <None Remove="Images\star_wars_template\player_finish_sw.jpg" />
     <None Remove="Images\star_wars_template\wall_sw.jpg" />
+    <None Remove="Images\stuckmenu\defeat.png" />
     <None Remove="Images\stuckmenu\exit.png" />
+    <None Remove="Images\stuckmenu\reload.png" />
     <None Remove="Images\stuckmenu\stuck.png" />
     <None Remove="Levels\01.txt" />
     <None Remove="Levels\02.txt" />
@@ -248,7 +250,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\stuckmenu\defeat.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\stuckmenu\exit.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\stuckmenu\reload.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\stuckmenu\stuck.png">

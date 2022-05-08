@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Nikoban"
         xmlns:l="clr-namespace:Nikoban.Logic"
         mc:Ignorable="d"
-        Title="ScoreWindow" Height="352" Width="347">
+        Title="ScoreWindow" Height="352" Width="347"
+        WindowStartupLocation="CenterScreen">
     <Grid Background="#FF0C1534">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
