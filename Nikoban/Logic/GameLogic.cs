@@ -45,7 +45,7 @@ namespace Nikoban.Logic
             this.gameMode = gm;
             r = new Random();
             levelIndex = 0;
-            score = 0;
+            score = 100;
             Life = 3;
             levels = new List<string>();
             foreach (var item in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels")))
@@ -123,6 +123,7 @@ namespace Nikoban.Logic
             if (((Map[x, y] == GameItem.box || Map[x, y] == GameItem.box_on_target) && (Map[future_x, future_y] != GameItem.wall && Map[future_x, future_y] != GameItem.box && Map[future_x, future_y] != GameItem.box_on_target))
                 || ((Map[x, y] == GameItem.floor) || (Map[x, y] == GameItem.target))) //lehet tolni
             {
+                score--;
                 if (Map[old_x, old_y] == GameItem.player)
                 {
                     Map[old_x, old_y] = GameItem.floor;
@@ -170,7 +171,9 @@ namespace Nikoban.Logic
             }
             if (direction == Direction.escape)
             {
-                if (MessageBox.Show("Do you want to quit?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                ExitWindow window = new ExitWindow();
+                window.ShowDialog();
+                if(window.DialogResult==true)
                 {
                     if (gameMode == GameMode.playthrough)
                     {
@@ -221,8 +224,8 @@ namespace Nikoban.Logic
                                 }
                             }
                         }
-                        MessageBox.Show($"The box stucked. You have {Life} life left.");
-                        score--;
+                        StuckWindow window = new StuckWindow();
+                        window.ShowDialog();
                         LoadMap(levels[levelIndex]);
                     }
                     else

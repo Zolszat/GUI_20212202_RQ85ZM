@@ -43,6 +43,8 @@
     <None Remove="Images\star_wars_template\floor_sw.jpg" />
     <None Remove="Images\star_wars_template\player_finish_sw.jpg" />
     <None Remove="Images\star_wars_template\wall_sw.jpg" />
+    <None Remove="Images\stuckmenu\exit.png" />
+    <None Remove="Images\stuckmenu\stuck.png" />
     <None Remove="Levels\01.txt" />
     <None Remove="Levels\02.txt" />
     <None Remove="Levels\03.txt" />
@@ -243,6 +245,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\stuckmenu\exit.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\stuckmenu\stuck.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
