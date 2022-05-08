@@ -27,6 +27,10 @@ namespace Nikoban
         {
             InitializeComponent();
             logic = new GameLogic(gm);
+            if(gm == GameMode.funmode)
+            {
+                hp_bar.Visibility = Visibility.Hidden;
+            }
             display.SetupModel(logic);
             controller = new GameController(logic);
         }
