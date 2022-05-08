@@ -45,8 +45,10 @@
     <None Remove="Images\star_wars_template\wall_sw.jpg" />
     <None Remove="Images\stuckmenu\defeat.png" />
     <None Remove="Images\stuckmenu\exit.png" />
+    <None Remove="Images\stuckmenu\more.png" />
     <None Remove="Images\stuckmenu\reload.png" />
     <None Remove="Images\stuckmenu\stuck.png" />
+    <None Remove="Images\stuckmenu\victory.png" />
     <None Remove="Levels\01.txt" />
     <None Remove="Levels\02.txt" />
     <None Remove="Levels\03.txt" />
@@ -256,12 +258,38 @@
     <Resource Include="Images\stuckmenu\exit.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\stuckmenu\more.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\stuckmenu\reload.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\stuckmenu\stuck.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\stuckmenu\victory.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MoreGameWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="VictoryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="MoreGameWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="VictoryWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

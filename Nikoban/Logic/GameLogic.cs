@@ -230,7 +230,9 @@ namespace Nikoban.Logic
                     }
                     else
                     {
-                        if (MessageBox.Show("Do you want to play it again?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        ReloadWindow reloadwindow = new ReloadWindow();
+                        reloadwindow.ShowDialog();
+                        if (reloadwindow.DialogResult==true)
                         {
                             LoadMap(levels[funIndex]);
                         }
@@ -250,6 +252,7 @@ namespace Nikoban.Logic
                 {
                     if (gameMode == GameMode.playthrough)
                     {
+                        score -= 100;
                         foreach (var item in Application.Current.Windows)
                         {
                             if (item is LevelWindow)
@@ -262,7 +265,8 @@ namespace Nikoban.Logic
                     }
                     else
                     {
-                        MessageBox.Show("Defeat!");
+                        DefeatWindow defeatwindow = new DefeatWindow();
+                        defeatwindow.ShowDialog();
                     }
                     foreach (var item in Application.Current.Windows)
                     {
@@ -283,7 +287,8 @@ namespace Nikoban.Logic
                 }
                 else if (levelIndex > levels.Count && gameMode == GameMode.playthrough)
                 {
-                    MessageBox.Show($"Victory! Your score is: {score}");
+                    VictoryWindow victorywindow = new VictoryWindow();
+                    victorywindow.ShowDialog();
                     foreach (var item in Application.Current.Windows)
                     {
                         if (item is LevelWindow)
@@ -294,7 +299,9 @@ namespace Nikoban.Logic
                 }
                 else
                 {
-                    if (MessageBox.Show("Do you want to play more?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    MoreGameWindow moregamewindow = new MoreGameWindow();
+                    moregamewindow.ShowDialog();
+                    if (moregamewindow.DialogResult==true)
                     {
                         funIndex = r.Next(1, levels.Count - 1);
                         LoadMap(levels[funIndex]);
@@ -313,7 +320,7 @@ namespace Nikoban.Logic
             }
         }
 
-        private int score; // játékos pontszáma (PBA-LSZ-EIM-BP lásd specifikáció/pontozás)
+        private int score; // játékos pontszáma (PBA-LSZ-BP lásd specifikáció/pontozás)
 
         public int Score { get { return score; } }
         private int[] CurrentPosition()
