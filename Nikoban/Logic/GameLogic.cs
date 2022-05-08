@@ -65,7 +65,7 @@ namespace Nikoban.Logic
         private void LoadMap(string path)
         {
             string[] lines = File.ReadAllLines(path);
-            score += 100;
+            score += 200;
             Map = new GameItem[int.Parse(lines[0]), int.Parse(lines[1])];
             TargetCheckMap = new bool[int.Parse(lines[0]), int.Parse(lines[1])];
             for (int i = 0; i < Map.GetLength(0); i++)
@@ -192,7 +192,7 @@ namespace Nikoban.Logic
                     {
                         if (gameMode == GameMode.playthrough)
                         {
-                            score-=110; //-10 pont az újrakezdésért, -100, mert újra betölti a pályát
+                            score-=210; //-10 pont az újrakezdésért, -100, mert újra betölti a pályát
                             LoadMap(levels[levelIndex]);
                         }
                         else
@@ -225,7 +225,7 @@ namespace Nikoban.Logic
                         }
                         StuckWindow stuckwindow = new StuckWindow();
                         stuckwindow.ShowDialog();
-                        score-= 100;
+                        score-= 200;
                         LoadMap(levels[levelIndex]);
                     }
                     else
@@ -278,7 +278,6 @@ namespace Nikoban.Logic
             {
                 if (levelIndex <= levels.Count && gameMode == GameMode.playthrough)
                 {
-                    MessageBox.Show($"{score}");
                     levelIndex++;
                     LoadMap(levels[levelIndex]);
                 }
