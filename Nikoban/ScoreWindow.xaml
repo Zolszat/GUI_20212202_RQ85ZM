@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="ScoreWindow" Height="352" Width="347"
         WindowStartupLocation="CenterScreen">
-    <Grid Background="#FF0C1534">
+    <Grid Background="#FF0C1534" FocusManager.FocusedElement="{Binding ElementName=tb_name}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -28,7 +28,8 @@
             </Label.Background>
         </Label>
         <Label FontSize="20" VerticalContentAlignment="Center" Foreground="White" FontFamily="DigifaceWide" HorizontalContentAlignment="Center" Grid.Row="2" Content="Enter your name"  Background="{x:Null}"></Label>
-        <TextBox Grid.Row="3" Name="tb_name" ToolTip="Type here" FontFamily="DigifaceWide" Foreground="White" FontSize="20" TextAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <TextBox x:Name="tb_name" Grid.Row="3" ToolTip="Type here" FontFamily="DigifaceWide" Foreground="White" FontSize="20" TextAlignment="Center"
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.2">
                     <GradientStop Color="#FF020835" Offset="0.362"/>
@@ -38,7 +39,7 @@
             </TextBox.Background>
         </TextBox>
 
-        <Button Grid.Row="4" Content="Save" FontSize="25" FontFamily="DigifaceWide" Foreground="White" Background="{x:Null}" Click="Button_Click"/>
+        <Button Grid.Row="4" Content="Save" FontSize="25" FontFamily="DigifaceWide" Foreground="White" Background="{x:Null}" Click="Button_Click" IsDefault="True"/>
 
 
     </Grid>

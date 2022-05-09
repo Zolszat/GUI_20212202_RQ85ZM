@@ -30,6 +30,7 @@ namespace Nikoban
             foreach (string item in Scores)
             {
                 string[] scoreItem = item.Split(" ",StringSplitOptions.None);
+                scoreItem[0] = scoreItem[0].Replace('_', ' ');
                 Results.Add(new Result(scoreItem[0], int.Parse(scoreItem[1])));
             }
 

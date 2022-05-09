@@ -20,8 +20,8 @@ namespace Nikoban
     /// </summary>
     public partial class ScoreWindow : Window
     {
-        int newScore;
-        StreamWriter sw;
+        private int newScore;
+        private StreamWriter sw;
 
         public ScoreWindow(int newScore)
         {
@@ -36,7 +36,10 @@ namespace Nikoban
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             sw = File.AppendText(@"Scores\score.txt");
-            sw.WriteLine($"{tb_name.Text} {newScore}");
+            //sw.WriteLine($"{tb_name.Text} {newScore}");
+
+            sw.WriteLine(new Result(tb_name.Text.Replace(' ','_'), newScore).ToString());
+
             sw.Close();
 
             Close();
