@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" FontSize="20" VerticalContentAlignment="Center" Foreground="White" HorizontalContentAlignment="Center" Content="ScoreBoard"  Background="#FF0C1534" FontFamily="DigifaceWide"></Label>
-        <ListBox Grid.Row="1" Name="lb_Scores"  FontSize="20" VerticalContentAlignment="Center" Foreground="White" Background="#FF0C1534" FontFamily="DigifaceWide">
+        <ListBox Grid.Row="1" Name="lb_Scores"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Background="#FF0C1534" FontFamily="DigifaceWide">
 
             
         </ListBox>
