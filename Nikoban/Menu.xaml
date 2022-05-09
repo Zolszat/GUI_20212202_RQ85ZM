@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:Nikoban"
         mc:Ignorable="d"
         Title="Nikoban" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
     <Grid>
         <MediaElement LoadedBehavior="Manual" Name="mediaElement1" VerticalAlignment="Top" Visibility="Hidden"/>
         <MediaElement LoadedBehavior="Manual" Name="jojo" VerticalAlignment="Top" Visibility="Hidden"/>
@@ -145,7 +146,8 @@
                     </Button.Background>
                 </Button>
             </Grid>
-            <Button Margin="460,344,94,27" Content="Exit" FontFamily="DigifaceWide" FontSize="19" Foreground="White" BorderBrush="{x:Null}" Click="Button_Click" FontStretch="Medium">
+            <Button Margin="460,344,94,27" Content="Exit" FontFamily="DigifaceWide" FontSize="19"
+                    Foreground="White" BorderBrush="{x:Null}" Click="Button_Click" FontStretch="Medium">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/menu/button2.png"/>
                 </Button.Background>
