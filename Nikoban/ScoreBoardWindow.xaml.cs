@@ -33,7 +33,9 @@ namespace Nikoban
                 Results.Add(new Result(scoreItem[0], int.Parse(scoreItem[1])));
             }
 
-            Results.OrderBy(x => x.Score);
+            Results.OrderByDescending(x => x.Score);
+
+            Results.Sort();
 
             foreach (Result item in Results)
             {
@@ -43,7 +45,7 @@ namespace Nikoban
 
         }
     }
-    public class Result
+    public class Result: IComparable
     {
         public string Name { get; set; }
         public int Score { get; set; }
@@ -59,5 +61,17 @@ namespace Nikoban
             return $"{Name} {Score}";
         }
 
+        public int CompareTo(object obj)
+        {
+            if (this.Score < (obj as Result).Score)
+            {
+                return 1;
+            }
+            else if (this.Score > (obj as Result).Score)
+            {
+                return -1;
+            }
+            else return 0;
+        }
     }
 }
