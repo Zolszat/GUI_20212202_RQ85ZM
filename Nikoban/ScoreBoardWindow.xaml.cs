@@ -33,8 +33,6 @@ namespace Nikoban
                 Results.Add(new Result(scoreItem[0], int.Parse(scoreItem[1])));
             }
 
-            Results.OrderByDescending(x => x.Score);
-
             Results.Sort();
 
             foreach (Result item in Results)

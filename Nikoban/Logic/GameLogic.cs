@@ -405,14 +405,5 @@ namespace Nikoban.Logic
                     return GameItem.floor;
             }
         }
-
-        private bool EmptySpace(GameItem gameItem)
-        {
-            if (gameItem == GameItem.floor || gameItem == GameItem.target)
-            {
-                return true;
-            }
-            return false;
-        }
     }
 }
